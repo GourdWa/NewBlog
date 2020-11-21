@@ -1,0 +1,18 @@
+spring:
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev #激活开发环境的配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.106.130:3306/new_blog?serverTimezone=UTC
+    username: root
+    password: root
+#    配置国际化的路径
+  messages:
+    basename: i18n.message
+#评论的头像
+comment:
+  avatar: /images/avatar.png
+
+

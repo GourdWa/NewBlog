@@ -1,0 +1,84 @@
+package com.hzx.blog;
+
+import com.hzx.blog.bean.Blog;
+import com.hzx.blog.bean.BlogTag;
+import com.hzx.blog.bean.Type;
+import com.hzx.blog.bean.User;
+import com.hzx.blog.dao.BlogMapper;
+import com.hzx.blog.dao.BlogTagMapper;
+import com.hzx.blog.dao.TypeMapper;
+import com.hzx.blog.dao.UserMapper;
+import com.hzx.blog.utils.MD5Utils;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+@SpringBootTest
+class BlogApplicationTests {
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    BlogMapper blogMapper;
+
+    @Autowired
+    RedisTemplate typeRedisTemplate;
+
+    @Autowired
+    TypeMapper typeMapper;
+
+    @Autowired
+    RedisTemplate blogRedisTemplate;
+
+    @Autowired
+    BlogTagMapper blogTagMapper;
+
+    @Test
+    void contextLoads() {
+        String title = "博客";
+        for (int i = 0; i < 10; i++) {
+            Blog blog = new Blog();
+            blog.setTitle(title + i);
+            blog.setAppreciation(i % 2 == 0);
+            blog.setCommentabled(i % 3 == 1);
+            blog.setContent(UUID.randomUUID().toString());
+            blog.setDescription(UUID.randomUUID().toString());
+            blog.setFirstPicture(UUID.randomUUID().toString());
+            blog.setFlag("原创");
+            blog.setGoodJob(0);
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setUserId(1L);
+            blog.setTypeId((long) new Random().nextInt(3));
+            blogMapper.insert(blog);
+        }
+    }
+
+    @Test
+    void test01() {
+
+        long mysqlStart = System.currentTimeMillis();
+        List<Blog> blogs = blogMapper.selectList(null);
+        System.out.println("Mysql耗时：" + (System.currentTimeMillis() - mysqlStart));
+
+        long redisStart = System.currentTimeMillis();
+        List<Blog> blogs1 = (List<Blog>) blogRedisTemplate.opsForValue().get("blogs");
+        System.out.println("redis耗时：" + (System.currentTimeMillis() - redisStart));
+    }
+
+    @Test
+    public void test02() {
+        BlogTag blogTag = new BlogTag();
+        blogTag.setBlogId(1L);
+        blogTag.setTagId(1L);
+        int i = blogTagMapper.insert(blogTag);
+
+    }
+
+}
