@@ -147,6 +147,16 @@ public class BlogServiceImpl implements BlogService {
         return blog1;
     }
 
+    @Override
+    public List<Blog> getByTypeId(Long typeId) {
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type_id", typeId);
+        List<Blog> blogs = blogMapper.selectList(queryWrapper);
+        Type type = typeService.getById(typeId);
+        blogs.forEach(blog -> blog.setType(type));
+        return blogs;
+    }
+
     public void createBlogTagMap(String tagIds, long blogId) {
         String[] ids = tagIds.split(",");
         for (String tagId : ids) {

@@ -56,4 +56,11 @@ public interface BlogService {
      * @return
      */
     Blog updateBlog(Long id, Blog blog);
+
+    /**
+     * 根据类型id获取博客
+     * @param typeId
+     * @return
+     */
+    List<Blog> getByTypeId(Long typeId);
 }

@@ -262,12 +262,13 @@
         //如果删除前页面还有博客则删除后返回删除前标签；如果删除后页面没有博客，则返回其前一页的博客
         let redirectUrl;
         if (pageno > 1) {
+            //如果当前页面只有一条记录，那么删除后应该展示前一页的记录，如果多余一条记录，那么继续展示删除之后的页
             if (pagesize == 1) {
                 redirectUrl = "/admin/blogs/delete2list?deleteName=" + encodeURIComponent(blogtitle) + "&&currentNo=" + (pageno - 1);
             } else
                 redirectUrl = "/admin/blogs/delete2list?deleteName=" + encodeURIComponent(blogtitle) + "&&currentNo=" + pageno;
         } else
-            redirectUrl = "/admin/blogs/delete2list?deleteName=" + encodeURIComponent(blogtitle) + "&&currentNo=" + 1;
+            redirectUrl = "/admin/blogs/delete2list?deleteName=" + encodeURIComponent(blogtitle) + "&&currentNo=1";
         if (confirm("确认删除【" + blogtitle + "】吗?")) {
             $.ajax({
                 url: "/admin/blogs/" + blogid + "/delete",

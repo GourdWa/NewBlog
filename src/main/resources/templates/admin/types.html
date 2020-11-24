@@ -55,7 +55,6 @@
         <!--这种注释，thymeleaf可以识别-->
         <!--/*/
         <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-
             <div class="header">提示：</div>
             <p th:text="${message}">恭喜，操作成功！</p>
         </div>
@@ -70,31 +69,29 @@
             </thead>
             <tbody>
             <!--    thymeleaf遍历Model种的page        -->
-            <tr th:each="type,iterStat : ${page.content}">
+            <tr th:each="type,iterStat : ${page.getRecords()}">
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${type.name}">西游记</td>
                 <td>
                     <!--用type.id替换{id}-->
-                    <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}"
+                    <a href="#" th:href="@{/admin/}"
                        class="ui mini teal basic button">编辑</a>
-                    <!--                    <a href="#" th:href="@{/admin/types/{id}/delete(id=${type.id})}"-->
-                    <!--                       class="ui mini red basic button">删除</a>-->
                     <a href="#" onclick="deleteType(this)"
-                       th:attr="data-typeid=${type.id},data-typename=${type.name},data-pageno=${page.number},data-pagesize=${page.content.size()}"
+                       th:attr="data-typeid=${type.id},data-typename=${type.name},data-pageno=${page.current},data-pagesize=${page.getRecords().size()}"
                        class="ui mini red basic button">删除</a>
                 </td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="6">
+                <th colspan="7">
                     <!--只有总页数大于1页才会显示上一页下一页，否在不会显示-->
-                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                    <div class="ui mini pagination menu" th:if="${page.total}>1">
                         <!--涉及到th:href传参的使用-->
-                        <a class=" item" th:href="@{/admin/types(page=${page.number}-1)}"
-                           th:unless="${page.first}">上一页</a>
-                        <a class=" item" th:href="@{/admin/types(page=${page.number}+1)}"
-                           th:unless="${page.last}">下一页</a>
+                        <a class=" item" th:if="${page.hasPrevious()}"
+                           th:href="@{/admin/types(currentNo=${page.getCurrent()}-1)}">上一页</a>
+                        <a class=" item" th:if="${page.hasNext()}"
+                           th:href="@{/admin/types(currentNo=${page.getCurrent()}+1)}">下一页</a>
                     </div>
                     <a href="#" class="ui mini right floated teal basic button" th:href="@{/admin/types/input}">新增</a>
                 </th>
@@ -168,26 +165,34 @@
     $('.message').delay(2000).hide("slow");
 
     function deleteType(obj) {
+        //获取待删除的类型的id和类型名称
         const typeid = $(obj).data("typeid")
         const typename = $(obj).data("typename")
+        //获得当前页码和当前页展示的记录数目
         const pageno = $(obj).data("pageno")
         const pagesize = $(obj).data("pagesize")
         // 优化删除后页面的跳转
-        //如果删除前页面还有类型则删除后返回删除前标签；如果删除后页面没有类型，则返回其前一页的类型
+        //如果删除前页面还有类型则删除后返回删除前的页面；如果删除后页面没有类型，则返回其前一页的类型
         let redirectUrl;
-        if (pageno > 0) {
+        if (pageno > 1) {
+            //如果当前页面只有一条记录，那么删除后应该展示前一页的记录，如果多余一条记录，那么继续展示删除之后的页
             if (pagesize == 1) {
-                redirectUrl = "/admin/types?deleteName=" + encodeURIComponent(typename) + "&&page=" + (pageno - 1);
+                redirectUrl = "/admin/types/delete2list?deleteName=" + encodeURIComponent(typename) + "&&currentNo=" + (pageno - 1);
             } else
-                redirectUrl = "/admin/types?deleteName=" + encodeURIComponent(typename) + "&&page=" + pageno;
+                redirectUrl = "/admin/types/delete2list?deleteName=" + encodeURIComponent(typename) + "&&currentNo=" + pageno;
         } else
-            redirectUrl = "/admin/types?deleteName=" + encodeURIComponent(typename)
+            redirectUrl = "/admin/types/delete2list?deleteName=" + encodeURIComponent(typename) + "&&currentNo=1";
         if (confirm("确认删除【" + typename + "】吗?")) {
             $.ajax({
                 url: "/admin/types/" + typeid + "/delete",
                 success: function (result) {
-                    //重定向
-                    window.location.href = redirectUrl;
+                    if (result) {
+                        //重定向
+                        window.location.href = redirectUrl;
+                    } else {
+                        alert("【" + typename + "】还有关联的博客，不能删除！！！");
+                    }
+
                 }
             })
         }

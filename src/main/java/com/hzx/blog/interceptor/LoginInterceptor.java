@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     /**
-     * 目标方法前允许
+     * 目标方法运行前拦截
      *
      * @param request
      * @param response
