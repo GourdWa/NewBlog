@@ -42,6 +42,14 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
+    public Type getByName(String typeName) {
+        QueryWrapper<Type> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", typeName);
+        Type type = typeMapper.selectOne(queryWrapper);
+        return type;
+    }
+
+    @Override
     public List<Type> list() {
         //结合Redis
         List<Type> types = (List<Type>) typeRedisTemplate.opsForValue().get("types");
@@ -76,9 +84,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public boolean save(String typeName) {
-        QueryWrapper<Type> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name", typeName);
-        Type type = typeMapper.selectOne(queryWrapper);
+        Type type = getByName(typeName);
         //说明没有该类型可以放心添加
         if (type == null) {
             //首先清除Redis中的types
@@ -87,6 +93,21 @@ public class TypeServiceImpl implements TypeService {
             type.setName(typeName);
             return typeMapper.insert(type) != 0;
         }
+        return false;
+    }
+
+    @Override
+    public boolean update(Type newType) {
+        //首先去除两端的空格
+        newType.setName(newType.getName().trim());
+        Type type = getByName(newType.getName());
+        if (type == null) {
+            //首先清除Redis中的数据
+            typeRedisTemplate.delete("type_" + newType.getId());
+            typeRedisTemplate.delete("types");
+            return typeMapper.updateById(newType) != 0;
+        }
+        //如果不等于null说明重复，更新失败
         return false;
     }
 }

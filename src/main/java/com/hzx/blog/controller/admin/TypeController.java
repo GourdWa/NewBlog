@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/admin")
 public class TypeController {
     //定义分页时，每页显示的记录数
-    private static final Integer PAGE_SIZE = 3;
+    private static final Integer PAGE_SIZE = 5;
     @Autowired
     private TypeService typeService;
 
@@ -59,6 +59,14 @@ public class TypeController {
         return "admin/types_input";
     }
 
+    /**
+     * 保存新增的分类
+     *
+     * @param name
+     * @param redirectAttributes
+     * @param model
+     * @return
+     */
     @PostMapping("/types")
     public String save(String name, RedirectAttributes redirectAttributes, Model model) {
         boolean success = typeService.save(name.trim());
@@ -68,6 +76,40 @@ public class TypeController {
         } else {
             model.addAttribute("message", "【" + name.trim() + "】新增失败，请检查是否有重名现象");
             return "admin/types_input";
+        }
+    }
+
+    /**
+     * 修改分类，获取分类的id和名称
+     */
+    @GetMapping("/types/{id}/input")
+    public String editInput(@PathVariable("id") Long id, Model model) {
+        Type type = typeService.getById(id);
+        model.addAttribute("name", type.getName());
+        model.addAttribute("id", id);
+        return "admin/types_edit";
+    }
+
+    /**
+     * 更新分类
+     *
+     * @param type
+     * @param redirectAttributes
+     * @param model
+     * @return
+     */
+    @PostMapping("/types/update")
+    public String update(Type type, RedirectAttributes redirectAttributes, Model model) {
+        boolean success = typeService.update(type);
+        if (success) {
+            redirectAttributes.addFlashAttribute("message", "操作成功");
+            return "redirect:/admin/types";
+        } else {
+            model.addAttribute("message", "名称修改失败，请检查是否有重名现象");
+            //回显数据
+            model.addAttribute("name", type.getName());
+            model.addAttribute("id", type.getId());
+            return "admin/types_edit";
         }
     }
 }

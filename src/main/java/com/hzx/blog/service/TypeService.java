@@ -20,6 +20,13 @@ public interface TypeService {
     Type getById(Long typeId);
 
     /**
+     * 根据类型名称获取实例
+     * @param typeName
+     * @return
+     */
+    Type getByName(String typeName);
+
+    /**
      * 展示全部的类型，无分页
      *
      * @return
@@ -44,4 +51,11 @@ public interface TypeService {
      * @return
      */
     boolean save(String typeName);
+
+    /**
+     * 更新博客
+     * @param newType
+     * @return
+     */
+    boolean update(Type newType);
 }
