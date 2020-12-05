@@ -1,6 +1,7 @@
 package com.hzx.blog.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hzx.blog.bean.Blog;
 import com.hzx.blog.bean.Tag;
 import com.hzx.blog.bean.Type;
 
@@ -73,4 +74,20 @@ public interface TagService {
      * @return
      */
     boolean update(Tag newTag);
+
+    /**
+     * 用于首页右边栏的展示,找出包含博客数量最多的前size个类型
+     * @param size
+     * @return
+     */
+    List<Tag> listTop(Integer size);
+
+    /**
+     * 查询出包含该id下所有已经发表的博客
+     * @param id
+     * @param currentNo
+     * @param pageSize
+     * @return
+     */
+    Page<Blog> getBlogsByIdTop(Long id, Integer currentNo, Integer pageSize);
 }

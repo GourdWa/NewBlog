@@ -2,6 +2,7 @@ package com.hzx.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hzx.blog.bean.BlogTag;
+import com.hzx.blog.bean.TagPublishedBlogNum;
 import com.hzx.blog.dao.BlogTagMapper;
 import com.hzx.blog.service.BlogTagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,24 @@ public class BlogTagServiceImpl implements BlogTagService {
     }
 
     @Override
-    public List<BlogTag>  getTagIdsByBlogId(long blogId) {
+    public List<BlogTag> getTagIdsByBlogId(long blogId) {
         QueryWrapper<BlogTag> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("blog_id", blogId);
         List<BlogTag> blogTags = blogTagMapper.selectList(queryWrapper);
         return blogTags;
+    }
+
+    @Override
+    public List<BlogTag> getBlogTagByTagId(Long tagId) {
+        QueryWrapper<BlogTag> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("tag_id", tagId);
+        List<BlogTag> blogTags = blogTagMapper.selectList(queryWrapper);
+        return blogTags;
+    }
+
+    @Override
+    public List<TagPublishedBlogNum> getPublishedTagIds(int size, List<Integer> blogIdList) {
+        List<TagPublishedBlogNum> publishedTagIds = blogTagMapper.getPublishedTagIds(size, blogIdList);
+        return publishedTagIds;
     }
 }

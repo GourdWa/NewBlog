@@ -52,6 +52,8 @@ public class Blog {
     private String tagIds;
     @TableField(exist = false)
     private List<Tag> tags = new ArrayList<>();
+    @TableField(exist = false)
+    private List<Comment> comments = new ArrayList<>();
     //作者
     private Long userId;
     @TableField(exist = false)
@@ -225,6 +227,14 @@ public class Blog {
         this.tagIds = tagIds;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -247,6 +257,7 @@ public class Blog {
                 ", type=" + type +
                 ", tagIds='" + tagIds + '\'' +
                 ", tags=" + tags +
+                ", comments=" + comments +
                 ", userId=" + userId +
                 ", user=" + user +
                 '}';

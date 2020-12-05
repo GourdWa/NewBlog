@@ -4,14 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.*;
 import com.hzx.blog.dao.BlogMapper;
-import com.hzx.blog.service.BlogService;
-import com.hzx.blog.service.BlogTagService;
-import com.hzx.blog.service.TagService;
-import com.hzx.blog.service.TypeService;
+import com.hzx.blog.service.*;
 import com.hzx.blog.utils.CheckUtil;
+import com.hzx.blog.utils.MarkDownUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,8 +31,13 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private TagService tagService;
     @Autowired
+    private UserService userService;
+    @Autowired
     private BlogTagService blogTagService;
-
+    @Autowired
+    RedisTemplate typeRedisTemplate;
+    @Autowired
+    RedisTemplate tagRedisTemplate;
 
     /**
      * 首先根据条件查询出分页数据，并配合Redis为博客的类型赋值
@@ -79,6 +84,7 @@ public class BlogServiceImpl implements BlogService {
         return setTypeByRedis(page, queryWrapper);
     }
 
+    @Transactional
     @Override
     public Blog save(Blog blog) {
         //设置创建时间和更新时间
@@ -93,13 +99,20 @@ public class BlogServiceImpl implements BlogService {
         //建立博客和标签的映射
         String tagIds = blog.getTagIds();
         createBlogTagMap(tagIds, blog.getId());
+        //因为新增了博客，删除Redis中缓存的前端展示type和tag（因为type中涉及了博客的数量）
+/*        typeRedisTemplate.delete("indexTypes");
+        tagRedisTemplate.delete("indexTags");*/
         return blog;
     }
 
+    @Transactional
     @Override
     public boolean delete(Long blogId) {
         int deleteA = blogMapper.deleteById(blogId);
         if (deleteA > 0) {
+            //因为新增了博客，删除Redis中缓存的前端展示type（因为type中涉及了博客的数量）
+/*            typeRedisTemplate.delete("indexTypes");
+            tagRedisTemplate.delete("indexTags");*/
             //说明博客删除成功
             //接下来删除与博客关联的标签（并不是删除标签本身，只是删除二者的关系）
             return blogTagService.delete(blogId);
@@ -127,6 +140,7 @@ public class BlogServiceImpl implements BlogService {
         return blog;
     }
 
+    @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
         //先获取出数据库中的博客
@@ -144,6 +158,9 @@ public class BlogServiceImpl implements BlogService {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", blog1.getId());
         blogMapper.update(blog, queryWrapper);
+        //因为新增了博客，删除Redis中缓存的前端展示type（因为type中涉及了博客的数量）
+/*        typeRedisTemplate.delete("indexTypes");
+        tagRedisTemplate.delete("indexTags");*/
         return blog1;
     }
 
@@ -156,6 +173,7 @@ public class BlogServiceImpl implements BlogService {
         blogs.forEach(blog -> blog.setType(type));
         return blogs;
     }
+
 
     public void createBlogTagMap(String tagIds, long blogId) {
         String[] ids = tagIds.split(",");
@@ -171,4 +189,140 @@ public class BlogServiceImpl implements BlogService {
             }
         }
     }
+
+    /***************************************************前端展示实现***************************************************/
+    /**
+     * 为博客设置类型和标签
+     *
+     * @param page
+     * @param queryWrapper
+     * @return
+     */
+    private Page<Blog> setTypeAndTags(Page<Blog> page, QueryWrapper<Blog> queryWrapper) {
+        Page<Blog> blogPage = blogMapper.selectPage(page, queryWrapper);
+        List<Blog> records = blogPage.getRecords();
+        for (Blog record : records) {
+            //设置作者
+            User user = userService.getUserById(record.getUserId());
+            record.setUser(user);
+            //先为类型和标签赋值
+            setTypeAndTags(record);
+        }
+        return blogPage;
+    }
+
+    /**
+     * 传入一个博客，为该博客设置类型和标签
+     *
+     * @param blog
+     * @return
+     */
+    private void setTypeAndTags(Blog blog) {
+        Type type = typeService.getById(blog.getTypeId());
+        blog.setType(type);
+        List<BlogTag> blogTags = blogTagService.getTagIdsByBlogId(blog.getId());
+        List<Tag> tags = new ArrayList<>();
+        for (BlogTag blogTag : blogTags) {
+            Tag tag = tagService.getById(blogTag.getTagId());
+            tags.add(tag);
+        }
+        blog.setTags(tags);
+    }
+
+    @Override
+    public List<Integer> getPublishedTypeIds(int size) {
+        return blogMapper.getPublishedTypeIds(size);
+    }
+
+    @Override
+    public Integer getBlogNumByPublishedAndTypeId(int typeId) {
+        return blogMapper.getBlogNumByPublishedAndTypeId(typeId);
+    }
+
+    @Override
+    public Page<Blog> getBlogsByTypeIdTop(Long typeId, Page<Blog> page) {
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type_id", typeId).eq("published", true).orderByDesc("update_time");
+        //为博客设置类型和标签
+        Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        return blogPage;
+    }
+
+    @Override
+    public List<Integer> getPublishedIdList() {
+        return blogMapper.getPublishedIdList();
+    }
+
+    @Override
+    public Page<Blog> getBlogsByIdsTop(List<Long> blogIds, Page<Blog> page) {
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("published", true).in("id", blogIds).orderByDesc("update_time");
+        Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        return blogPage;
+    }
+
+
+    @Override
+    public Page<Blog> listTop(Integer currentNo, Integer pageSize) {
+        Page<Blog> page = new Page<>(currentNo, pageSize);
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        //根据更新时间排序
+        queryWrapper.orderByDesc("update_time");
+        //只返回已经发布的博客，保存的博客不要展示出来
+        queryWrapper.eq("published", true);
+        //查询出来之后还要为这些博客的标签和类型赋值+作者
+        Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        return blogPage;
+    }
+
+    /**
+     * TODO
+     * 加缓存
+     *
+     * @param size
+     * @return
+     */
+    @Override
+    public List<Blog> listRecommendBlogTop(int size) {
+
+        List<Blog> blogs = blogMapper.getRecommendBlog(size);
+        return blogs;
+    }
+
+    /**
+     * TODO
+     * 加缓存
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogMapper.selectById(id);
+        Blog newBlog = new Blog();
+        BeanUtils.copyProperties(blog, newBlog);
+        String content = newBlog.getContent();
+        String htmlContent = MarkDownUtil.markdownToHtmlExtensions(content);
+        newBlog.setContent(htmlContent);
+        //更新浏览次数
+        blogMapper.updateViews(id);
+        //设置类型和标签
+        setTypeAndTags(newBlog);
+        User user = userService.getUserById(newBlog.getUserId());
+        newBlog.setUser(user);
+        return newBlog;
+    }
+
+    @Override
+    public Page<Blog> listBlogTop(Integer currentNo, Integer pageSize, String query) {
+        Page<Blog> page = new Page<>(currentNo, pageSize);
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("published", true).
+                and(w->w.like("title", query).or().like("content", query)).
+                orderByDesc("update_time");
+        Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        return blogPage;
+    }
+
+
 }

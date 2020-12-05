@@ -81,4 +81,16 @@ class BlogApplicationTests {
 
     }
 
+    @Test
+    public void test03() {
+        List<Integer> typeIds = blogMapper.getPublishedTypeIds(2);
+        System.out.println(typeIds);
+    }
+
+    @Test
+    public void test04() {
+        Integer num = blogMapper.getBlogNumByPublishedAndTypeId(2);
+        System.out.println(num);
+    }
+
 }

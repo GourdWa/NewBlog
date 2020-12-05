@@ -21,7 +21,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
     //定义分页时，每页显示的记录数
-    private static final Integer PAGE_SIZE = 3;
+    private static final Integer PAGE_SIZE = 5;
 
     @GetMapping("/tags")
     public String list(Model model, @RequestParam(value = "currentNo", required = false) Integer currentNo) {

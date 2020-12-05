@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @TableName("t_type")
-public class Type {
+public class Type implements Comparable<Type> {
     @TableId(type = IdType.AUTO)
     private Long id;
     //类型名称
@@ -18,6 +18,9 @@ public class Type {
     //一个类型对应多个博客
     @TableField(exist = false)
     private List<Blog> blogs = new ArrayList<>();
+    //已经发布的博客数量
+    @TableField(exist = false)
+    private Integer publishedBlogNum = 0;
 
     public Type() {
     }
@@ -46,12 +49,27 @@ public class Type {
         this.blogs = blogs;
     }
 
+    public Integer getPublishedBlogNum() {
+        return publishedBlogNum;
+    }
+
+    public void setPublishedBlogNum(Integer publishedBlogNum) {
+        this.publishedBlogNum = publishedBlogNum;
+    }
+
     @Override
     public String toString() {
         return "Type{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", blogs=" + blogs +
+                ", blogNum=" + publishedBlogNum +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Type o) {
+        //按照拥有的博客数量从大到小排序
+        return o.publishedBlogNum - this.publishedBlogNum;
     }
 }

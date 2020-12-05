@@ -44,6 +44,7 @@ public interface BlogService {
 
     /**
      * 根据博客id获取博客的信息
+     *
      * @param blogId
      * @return
      */
@@ -51,6 +52,7 @@ public interface BlogService {
 
     /**
      * 更新博客
+     *
      * @param id
      * @param blog
      * @return
@@ -59,8 +61,77 @@ public interface BlogService {
 
     /**
      * 根据类型id获取博客
+     *
      * @param typeId
      * @return
      */
     List<Blog> getByTypeId(Long typeId);
+
+    /**
+     * 前台展示的博客，只列举出已经发布的博客
+     *
+     * @param currentNo
+     * @param pageSize
+     * @return
+     */
+    Page<Blog> listTop(Integer currentNo, Integer pageSize);
+
+    /**
+     * 前台展示推荐的博客，根据跟新时间只展示前size个
+     *
+     * @param size
+     * @return
+     */
+    List<Blog> listRecommendBlogTop(int size);
+
+    /**
+     * 前台展示的Blog获取
+     */
+    Blog getAndConvert(Long id);
+
+    /**
+     * 查询博客，返回标题或文本中包含query的博客
+     *
+     * @param currentNo
+     * @param pageSize
+     * @param query
+     * @return
+     */
+    Page<Blog> listBlogTop(Integer currentNo, Integer pageSize, String query);
+
+    /**
+     * 无重复的返回已发布博客的类型id列表
+     *
+     * @param size
+     * @return
+     */
+    List<Integer> getPublishedTypeIds(int size);
+
+    /**
+     * 获得typeId类型中已经发布的博客数量
+     */
+    Integer getBlogNumByPublishedAndTypeId(int typeId);
+
+    /**
+     * typeId类型中已经发布的博客
+     *
+     * @param typeId
+     * @param page
+     * @return
+     */
+    Page<Blog> getBlogsByTypeIdTop(Long typeId, Page<Blog> page);
+
+    /**
+     * 获得已经发布的博客的id列表
+     */
+    List<Integer> getPublishedIdList();
+
+
+    /**
+     * 根据博客id，获取已经发布的博客，返回分页数据
+     *
+     * @param blogIds
+     * @return
+     */
+    Page<Blog> getBlogsByIdsTop(List<Long> blogIds, Page<Blog> page);
 }

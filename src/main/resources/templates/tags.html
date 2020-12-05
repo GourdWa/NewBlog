@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- semantic的CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+    <!-- 引入自定义的CSS样式 -->
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>标签</title>
+</head>
+
+<body>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++导航+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<nav th:replace="_fragments :: menu(3)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <!-- tral是指定颜色 -->
+            <h2 class='ui teal header item'>Blog</h2>
+            <a href="#" class="m-item m-mobile-hide item"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class=" idea icon"></i>分类</a>
+            <a href="#" class="active m-item  m-mobile-hide item"><i class=" tags icon"></i>标签</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class="info icon"></i>关于我</a>
+            <div class="right m-item  item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search~~~">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle icon black button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++中间内容+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div class="m-padded-tb-big m-container-small">
+    <div class="ui container">
+        <!-- header -->
+        <div class="ui top attached segment">
+            <div class="ui grid two column middle aligned">
+                <div class="column">
+                    <h3 class="ui teal header">标签</h3>
+                </div>
+                <div class="column right aligned">
+                    共<h2 class="ui red header  m-inline-block m-text-thin" th:text="${#arrays.length(tags)}"> xx </h2>个
+                </div>
+            </div>
+        </div>
+
+        <div class="segment ui attached m-padded-tb-large">
+            <div class="ui labeled button m-margin-tb-tiny" th:each="tag : ${tags}">
+                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic button"
+                   th:classappend="${tag.id==activeTagId}?'teal'"
+                   th:text="${tag.name}">古诗</a>
+                <div class="ui basic left pointing label" th:classappend="${tag.id==activeTagId}?'teal'" th:text="
+                     ${tag.publishedBlogNum}
+                ">xx
+                </div>
+            </div>
+        </div>
+
+        <div class="ui top attached teal segment">
+            <div class="ui padded  vertical segment m-padded-tb-large" th:each="blog : ${page.getRecords()}">
+                <div class="ui middle aligned mobile reversed stackable grid">
+                    <div class="eleven wide column">
+                        <h3 class="ui header"><a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank"
+                                                 class="m-black"
+                                                 th:text="${blog.title}">西游记</a></h3>
+                        <p class="m-text" th:text="|${blog.description}......|">
+                            诗曰：混沌未分天地乱，茫茫渺渺无人见。自从盘古破鸿蒙，开辟从兹清浊辨。
+                            覆载群生仰至仁，发明万物皆成善。欲知造化会元功，须看西游释厄传。
+                            盖闻天地之数，有十二万九千六百岁为一元。将一元分为十二会，乃子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥之十二支也。每会该一万八百岁。</p>
+                        <div class="ui grid">
+                            <div class="eleven wide column">
+                                <div class="ui mini horizontal link list">
+                                    <div class="item">
+                                        <!-- 头像 -->
+                                        <img src="https://picsum.photos/id/1025/50/50" alt=""
+                                             class="ui avatar image" th:src="@{${blog.user.avatar}}">
+                                        <div class="content"><a href="#" class="header"
+                                                                th:text="${blog.user.nickname}">葫芦娃</a></div>
+                                    </div>
+                                    <!-- 时间 -->
+                                    <div class="item">
+                                        <i class="calendar icon"></i><span
+                                            th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-09-02</span>
+                                    </div>
+                                    <!-- 浏览次数 -->
+                                    <div class="item">
+                                        <i class="eye icon"></i><span th:text="${blog.views}">65535</span>
+                                    </div>
+                                    <!-- 浏览次数 -->
+                                    <div class="item">
+                                        <i class="thumbs up icon"></i><span
+                                            th:text="${blog.goodJob}">65535</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right aligned five wide column">
+                                <a href="#" th:href="@{/types/{id}(id=${blog.type.id})}"
+                                   class="ui teal basic label m-padded-mini m-text-thin"
+                                   th:text="${blog.type.name}">经典名著</a>
+                            </div>
+                        </div>
+                        <!--这一行的目的是为了展示当前博客的所有标签，并给这些标签添加上连接-->
+                        <div class="row">
+                            <div class="column">
+                                <a href="#" th:href="@{/tags/{id}(id=${blogTag.id})}"
+                                   th:each="blogTag : ${blog.tags}"
+                                   th:text="${blogTag.name}"
+                                   class="ui basic  left pointing label m-padded-mini m-text-thin"
+                                   th:classappend="${blogTag.id==activeTagId}?'teal'">书籍</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                            <img src="https://picsum.photos/id/1050/180/130" alt=""
+                                 class=" ui rounded image" th:src="@{${blog.firstPicture}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui bottom attached segment" th:if="${page.getPages()}>1">
+            <div class="ui grid two column middle aligned">
+                <div class="column">
+                    <a href="#" class="ui mini teal basic button"
+                       th:href="@{/tags/{id}(currentNo=${page.getCurrent()}-1,id=${activeTagId})}"
+                       th:if="${page.hasPrevious()}">上一页</a>
+                </div>
+                <div class="column right aligned">
+                    <a href="#" th:href="@{/tags/{id}(currentNo=${page.getCurrent()}+1,id=${activeTagId})}"
+                       th:if="${page.hasNext()}" class="ui mini teal basic button">下一页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++底部+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <!-- <div class="three wide column ">
+                <div class="item">
+                    <img src="./static/images/QQ二维码.png" class="ui rounded image " alt="" style="width: 120px">
+                </div>
+            </div> -->
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="../static/images/QQ二维码.png" class="ui rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：132685188@qq.com</a>
+                    <a href="#" class="item">QQ：1312685188</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    这是我的个人博客，会分享任何我喜欢的内容
+                </p>
+            </div>
+        </div>
+        <div class="ui inverted section divider">
+            <br><br><br>
+            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright@ 2020 ZixiangHu All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<!-- Jquery的CDN -->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- semantic的CDN -->
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+</script>
+</body>
+
+</html>

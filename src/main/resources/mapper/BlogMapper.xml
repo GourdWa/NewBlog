@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzx.blog.dao.BlogMapper">
+    <update id="updateViews">
+        update new_blog.t_blog set views = views+1 where id=#{param1};
+    </update>
+    <!--List<Integer> getPublishedTypeIds();-->
+
+    <select id="getPublishedTypeIds" resultType="java.lang.Integer">
+        select type_id from new_blog.t_blog where published=true group by type_id order by count(type_id) desc limit #{param1};
+--        select distinct type_id from new_blog.t_blog where published=true;
+    </select>
+
+    <select id="getBlogNumByPublishedAndTypeId" resultType="java.lang.Integer">
+        select count(*) from new_blog.t_blog where published=true and type_id=#{param1}
+    </select>
+
+    <select id="getPublishedIdList" resultType="java.lang.Integer">
+        select id from new_blog.t_blog where published=true;
+    </select>
+
+    <select id="getRecommendBlog" resultType="com.hzx.blog.bean.Blog">
+        select * from new_blog.t_blog where published=true and recommend=true order by update_time desc limit #{size}
+    </select>
+</mapper>

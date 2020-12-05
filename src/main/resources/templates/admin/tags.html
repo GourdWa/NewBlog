@@ -89,7 +89,7 @@
             <tr>
                 <th colspan="6">
                     <!--只有总页数大于1页才会显示上一页下一页，否在不会显示-->
-                    <div class="ui mini pagination menu" th:if="${page.total}>1">
+                    <div class="ui mini pagination menu" th:if="${page.getPages()}>1">
                         <!--涉及到th:href传参的使用-->
                         <a class=" item" th:href="@{/admin/tags(currentNo=${page.getCurrent()}-1)}"
                            th:if="${page.hasPrevious()}">上一页</a>

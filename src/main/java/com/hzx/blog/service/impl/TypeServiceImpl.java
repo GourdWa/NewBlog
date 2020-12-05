@@ -5,13 +5,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Blog;
 import com.hzx.blog.bean.Type;
+import com.hzx.blog.dao.BlogMapper;
 import com.hzx.blog.dao.TypeMapper;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +31,6 @@ public class TypeServiceImpl implements TypeService {
     private TypeMapper typeMapper;
     @Autowired
     private BlogService blogService;
-
     @Autowired
     RedisTemplate typeRedisTemplate;
 
@@ -68,6 +72,7 @@ public class TypeServiceImpl implements TypeService {
         return typePage;
     }
 
+    @Transactional
     @Override
     public boolean delete(Long typeId) {
         List<Blog> blogs = blogService.getByTypeId(typeId);
@@ -82,6 +87,7 @@ public class TypeServiceImpl implements TypeService {
         return false;
     }
 
+    @Transactional
     @Override
     public boolean save(String typeName) {
         Type type = getByName(typeName);
@@ -96,6 +102,7 @@ public class TypeServiceImpl implements TypeService {
         return false;
     }
 
+    @Transactional
     @Override
     public boolean update(Type newType) {
         //首先去除两端的空格
@@ -109,5 +116,30 @@ public class TypeServiceImpl implements TypeService {
         }
         //如果不等于null说明重复，更新失败
         return false;
+    }
+
+    /***************************************************前端展示实现***************************************************/
+    @Override
+    public List<Type> listTop(Integer size) {
+        //获得已发表博客的类型id
+        List<Type> types = new ArrayList<>();
+        List<Integer> typeIds = blogService.getPublishedTypeIds(size);
+        for (Integer typeId : typeIds) {
+            Type type = typeMapper.selectById(typeId);
+            Integer num = blogService.getBlogNumByPublishedAndTypeId(typeId);
+            type.setPublishedBlogNum(num);
+            types.add(type);
+            Collections.sort(types);
+        }
+        return types;
+    }
+
+
+    @Override
+    public Page<Blog> getBlogsByIdTop(Long id, Integer pageNo, Integer pageSize) {
+        Page<Blog> page = new Page<>(pageNo, pageSize);
+        //获得该类型已经发表的博客
+        Page<Blog> blogPage = blogService.getBlogsByTypeIdTop(id, page);
+        return blogPage;
     }
 }
