@@ -8,17 +8,19 @@ import com.hzx.blog.bean.Type;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TagService;
 import com.hzx.blog.service.TypeService;
+import com.hzx.blog.utils.IpAddressUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -28,7 +30,7 @@ import java.util.List;
  */
 @Controller
 public class IndexController {
-    private static final Integer PAGE_SIZE = 3;
+    private static final Integer PAGE_SIZE = 6;
     @Autowired
     private BlogService blogService;
     @Autowired
@@ -55,6 +57,7 @@ public class IndexController {
         model.addAttribute("recommendBlogs", recommendBlogs);
         return "index";
     }
+
     /*
     打开博客详情页
     */
@@ -91,5 +94,25 @@ public class IndexController {
     public String newBlogs(Model model) {
         model.addAttribute("newBlogs", blogService.listRecommendBlogTop(3));
         return "_fragments :: newbloglist";
+    }
+
+    /*
+    TODO
+     * 更新博客的点赞数
+     * */
+    @GetMapping("/updateGoodjob")
+    @ResponseBody
+    public boolean goodJob(@RequestParam(name = "id") Long id, HttpSession httpSession) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String ipAddress = IpAddressUtil.getIpAddress(request);
+        Object containIp = httpSession.getAttribute(ipAddress + "###id=" + id);
+        if (containIp == null) {
+            httpSession.setAttribute(ipAddress + "###id=" + id, 1);
+            Blog blog = blogService.getBlogById(id);
+            boolean success = blogService.updateGoodJob(blog);
+            return success;
+        }
+        return false;
     }
 }

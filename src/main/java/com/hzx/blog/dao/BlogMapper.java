@@ -2,6 +2,7 @@ package com.hzx.blog.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hzx.blog.bean.Blog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -43,4 +44,12 @@ public interface BlogMapper extends BaseMapper<Blog> {
      * @return
      */
     List<Blog> getRecommendBlog(int size);
+
+    /**
+     * 更新博客的点赞数
+     * @param id
+     * @param goodJobCnt
+     * @return
+     */
+    boolean updateGoodJob(@Param("id") Long id,@Param("cnt") int goodJobCnt);
 }

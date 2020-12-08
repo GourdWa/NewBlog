@@ -134,4 +134,11 @@ public interface BlogService {
      * @return
      */
     Page<Blog> getBlogsByIdsTop(List<Long> blogIds, Page<Blog> page);
+
+    /**
+     * 更新博客的点赞数
+     * @param blog
+     */
+    boolean updateGoodJob(Blog blog);
+
 }

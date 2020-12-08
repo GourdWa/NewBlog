@@ -261,6 +261,12 @@ public class BlogServiceImpl implements BlogService {
         return blogPage;
     }
 
+    @Override
+    public boolean updateGoodJob(Blog blog) {
+        boolean success = blogMapper.updateGoodJob(blog.getId(), blog.getGoodJob() + 1);
+        return success;
+    }
+
 
     @Override
     public Page<Blog> listTop(Integer currentNo, Integer pageSize) {
@@ -318,7 +324,7 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> page = new Page<>(currentNo, pageSize);
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("published", true).
-                and(w->w.like("title", query).or().like("content", query)).
+                and(w -> w.like("title", query).or().like("content", query)).
                 orderByDesc("update_time");
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         return blogPage;

@@ -6,6 +6,9 @@
     <update id="updateViews">
         update new_blog.t_blog set views = views+1 where id=#{param1};
     </update>
+    <update id="updateGoodJob">
+        update new_blog.t_blog set good_job=#{cnt} where id=#{id}
+    </update>
     <!--List<Integer> getPublishedTypeIds();-->
 
     <select id="getPublishedTypeIds" resultType="java.lang.Integer">

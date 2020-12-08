@@ -548,7 +548,7 @@
 
 
             </div>
-            <div class="ui attached positive message">
+            <div class="ui attached positive message" th:if="${blog.shareStatement}">
                 <!-- 博客信息 -->
                 <div class="ui middle aligned grid">
                     <div class="eleven wide column">
@@ -612,7 +612,7 @@
                                                 <div class="ui mini basic teal left pointing label m-padded-mini"
                                                      th:if="${reply.adminComment}">博主
                                                 </div>
-                                                <span th:text="|@ ${reply.parentComment.nickname}|"
+                                                <span th:text="|@ ${reply.parentCommentNickName}|"
                                                       class="m-teal">@小白</span>
                                             </a>
                                             <div class="metadata">
@@ -817,10 +817,12 @@
         $.ajax({
             url: "/updateGoodjob?id=" + blogid,
             success: function (result) {
-                var cnt = $("#goodJobCount").text()
-                console.log(cnt)
-                $("#goodJobCount").text(parseInt(cnt) + 1);
-                $("#goodJob").text(parseInt(cnt) + 1);
+                if (result==true) {
+                    var cnt = $("#goodJobCount").text()
+                    console.log(cnt)
+                    $("#goodJobCount").text(parseInt(cnt) + 1);
+                    $("#goodJob").text(parseInt(cnt) + 1);
+                }
             }
         })
     }

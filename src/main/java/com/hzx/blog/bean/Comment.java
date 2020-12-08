@@ -34,10 +34,15 @@ public class Comment {
     //子评论的id集
     @TableField(exist = false)
     private List<Comment> replyCommentIds = new ArrayList<>();
+    @TableField(exist = false)
+    private List<Comment> replyComments = new ArrayList<>();
     //父评论
-    private Integer parentCommentId;
+    private Long parentCommentId;
     @TableField(exist = false)
     private Comment parentComment;
+    //父评论的用户名称
+    @TableField(exist = false)
+    private String parentCommentNickName;
 
     public Comment() {
     }
@@ -114,11 +119,11 @@ public class Comment {
         this.replyCommentIds = replyCommentIds;
     }
 
-    public Integer getParentCommentId() {
+    public Long getParentCommentId() {
         return parentCommentId;
     }
 
-    public void setParentCommentId(Integer parentCommentId) {
+    public void setParentCommentId(Long parentCommentId) {
         this.parentCommentId = parentCommentId;
     }
 
@@ -138,6 +143,22 @@ public class Comment {
         this.parentComment = parentComment;
     }
 
+    public List<Comment> getReplyComments() {
+        return replyComments;
+    }
+
+    public void setReplyComments(List<Comment> replyComments) {
+        this.replyComments = replyComments;
+    }
+
+    public String getParentCommentNickName() {
+        return parentCommentNickName;
+    }
+
+    public void setParentCommentNickName(String parentCommentNickName) {
+        this.parentCommentNickName = parentCommentNickName;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -151,8 +172,10 @@ public class Comment {
                 ", blogId=" + blogId +
                 ", blog=" + blog +
                 ", replyCommentIds=" + replyCommentIds +
+                ", replyComments=" + replyComments +
                 ", parentCommentId=" + parentCommentId +
                 ", parentComment=" + parentComment +
+                ", parentCommentNickName='" + parentCommentNickName + '\'' +
                 '}';
     }
 }
