@@ -45,7 +45,7 @@ public class IndexController {
         //展示出包含博客最多的前n个类型和标签
         List<Type> types = typeService.listTop(6);
         List<Tag> tags = tagService.listTop(8);
-        List<Blog> recommendBlogs = blogService.listRecommendBlogTop(3);
+        List<Blog> recommendBlogs = blogService.listRecommendBlogTop(5);
         //获得分页的数据
         model.addAttribute("page", blogPage);
         //列举出博客引用数最多的前几个类型
@@ -62,10 +62,11 @@ public class IndexController {
     public String blog(@PathVariable(name = "id") Long id, Model model) {
         Blog blog = blogService.getAndConvert(id);
         //后台查验，是否该博客已经发布
-        if (blog.isPublished())
-            //需要将博客的内容转换为html
+        if (blog.isPublished()) { //需要将博客的内容转换为html
             model.addAttribute("blog", blogService.getAndConvert(id));
-        return "blog";
+            return "blog";
+        } else
+            return "redirect:/";
     }
 
     /**

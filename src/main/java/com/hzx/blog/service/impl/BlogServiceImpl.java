@@ -99,9 +99,6 @@ public class BlogServiceImpl implements BlogService {
         //建立博客和标签的映射
         String tagIds = blog.getTagIds();
         createBlogTagMap(tagIds, blog.getId());
-        //因为新增了博客，删除Redis中缓存的前端展示type和tag（因为type中涉及了博客的数量）
-/*        typeRedisTemplate.delete("indexTypes");
-        tagRedisTemplate.delete("indexTags");*/
         return blog;
     }
 
@@ -110,11 +107,6 @@ public class BlogServiceImpl implements BlogService {
     public boolean delete(Long blogId) {
         int deleteA = blogMapper.deleteById(blogId);
         if (deleteA > 0) {
-            //因为新增了博客，删除Redis中缓存的前端展示type（因为type中涉及了博客的数量）
-/*            typeRedisTemplate.delete("indexTypes");
-            tagRedisTemplate.delete("indexTags");*/
-            //说明博客删除成功
-            //接下来删除与博客关联的标签（并不是删除标签本身，只是删除二者的关系）
             return blogTagService.delete(blogId);
         }
         return false;
@@ -158,9 +150,6 @@ public class BlogServiceImpl implements BlogService {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", blog1.getId());
         blogMapper.update(blog, queryWrapper);
-        //因为新增了博客，删除Redis中缓存的前端展示type（因为type中涉及了博客的数量）
-/*        typeRedisTemplate.delete("indexTypes");
-        tagRedisTemplate.delete("indexTags");*/
         return blog1;
     }
 

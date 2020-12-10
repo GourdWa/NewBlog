@@ -2,7 +2,7 @@ logging:
   level:
     com.hzx.blog: debug
   file:
-    name: ./log/blog_dev.log
+    name: ./log/dev/blog_dev.log
 server:
   port: 8060
 spring:

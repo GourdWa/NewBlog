@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Controller
 public class ArchiveTopController {
-    private static final Integer PAGE_SIZE = 1;
+    private static final Integer PAGE_SIZE = 10;
     @Autowired
     private BlogService blogService;
 

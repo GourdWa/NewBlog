@@ -120,7 +120,7 @@
                 <!--新增、上一页、下一页实现逻辑-->
                 <tr>
                     <th colspan="7">
-                        <div class="ui mini pagination menu" th:if="${page.total}>1">
+                        <div class="ui mini pagination menu" th:if="${page.getPages()}>1">
                             <!--涉及到th:attr传参的使用-->
                             <!---区别于类型和标签，因为需要传入条件查询的参数，因此绑定一个单击事件-->
                             <a href="#" onclick="page(this)" class="item" th:if="${page.hasPrevious()}"

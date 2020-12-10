@@ -6,6 +6,7 @@ import com.hzx.blog.bean.Type;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TypeService;
 import org.junit.jupiter.api.Test;
+//import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

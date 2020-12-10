@@ -10,6 +10,7 @@ import com.hzx.blog.dao.TypeMapper;
 import com.hzx.blog.dao.UserMapper;
 import com.hzx.blog.utils.MD5Utils;
 import org.junit.jupiter.api.Test;
+//import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;

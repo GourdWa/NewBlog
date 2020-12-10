@@ -2,7 +2,7 @@ spring:
   thymeleaf:
     mode: HTML
   profiles:
-    active: dev #激活开发环境的配置
+    active: prod #激活开发环境的配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.106.130:3306/new_blog?serverTimezone=UTC

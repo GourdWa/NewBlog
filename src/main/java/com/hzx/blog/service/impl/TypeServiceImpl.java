@@ -33,12 +33,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type getById(Long typeId) {
-        //同样首先从Redis中获取，如果没有才从数据库中查询
-        Type t = (Type) typeRedisTemplate.opsForValue().get("type_" + typeId);
-        if (t == null) {
-            t = typeMapper.selectById(typeId);
-            typeRedisTemplate.opsForValue().set("type_" + typeId, t, 1, TimeUnit.HOURS);
-        }
+        Type t = typeMapper.selectById(typeId);
         return t;
     }
 
@@ -52,12 +47,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public List<Type> list() {
-        //结合Redis
-        List<Type> types = (List<Type>) typeRedisTemplate.opsForValue().get("types");
-        if (types == null) {
-            types = typeMapper.selectList(null);
-            typeRedisTemplate.opsForValue().set("types", types, 1, TimeUnit.HOURS);
-        }
+        List<Type> types = typeMapper.selectList(null);
         return types;
     }
 
@@ -75,9 +65,6 @@ public class TypeServiceImpl implements TypeService {
         List<Blog> blogs = blogService.getByTypeId(typeId);
         //如果该类型没有关联的博客，则可以删除，否在删除不成功
         if (blogs == null || blogs.size() == 0) {
-            //同时要清除redis中的缓存
-            typeRedisTemplate.delete("type_" + typeId);
-            typeRedisTemplate.delete("types");
             //不等于0则删除成功
             return typeMapper.deleteById(typeId) != 0;
         }
@@ -90,8 +77,6 @@ public class TypeServiceImpl implements TypeService {
         Type type = getByName(typeName);
         //说明没有该类型可以放心添加
         if (type == null) {
-            //首先清除Redis中的types
-            typeRedisTemplate.delete("types");
             type = new Type();
             type.setName(typeName);
             return typeMapper.insert(type) != 0;
@@ -106,9 +91,6 @@ public class TypeServiceImpl implements TypeService {
         newType.setName(newType.getName().trim());
         Type type = getByName(newType.getName());
         if (type == null) {
-            //首先清除Redis中的数据
-            typeRedisTemplate.delete("type_" + newType.getId());
-            typeRedisTemplate.delete("types");
             return typeMapper.updateById(newType) != 0;
         }
         //如果不等于null说明重复，更新失败
