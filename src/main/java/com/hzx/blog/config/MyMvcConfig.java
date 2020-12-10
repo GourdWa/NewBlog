@@ -35,10 +35,12 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         //点击后台的”管理后台“来到后台首页
         registry.addViewController("/admin/toIndex").setViewName("admin/index");
+        registry.addViewController("/about").setViewName("about");
     }
 
     /**
      * Mybatis-Plus的分页插件注册
+     *
      * @return
      */
     @Bean

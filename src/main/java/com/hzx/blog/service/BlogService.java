@@ -1,6 +1,7 @@
 package com.hzx.blog.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hzx.blog.bean.Archive;
 import com.hzx.blog.bean.Blog;
 
 import java.util.List;
@@ -141,4 +142,18 @@ public interface BlogService {
      */
     boolean updateGoodJob(Blog blog);
 
+    /**
+     * 归档页面用，
+     * @return
+     */
+    List<Archive> getYearList();
+
+    /**
+     * 归档页面用，根据年份展示博客
+     * @param currentNo
+     * @param pageSize
+     * @param year
+     * @return
+     */
+    Page<Blog> getBlogByYear(Integer currentNo, Integer pageSize, Integer year);
 }

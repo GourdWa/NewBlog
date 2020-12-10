@@ -1,5 +1,6 @@
 package com.hzx.blog.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Comment;
 
 import java.util.List;
@@ -20,4 +21,28 @@ public interface CommentService {
      * @param comment
      */
     boolean saveComment(Comment comment);
+
+    /**
+     * 后台管理，展示所有的评论
+     * @param currentNo
+     * @param pageSize
+     * @return
+     */
+    Page<Comment> list(Integer currentNo, Integer pageSize);
+
+    /**
+     * 后端根据评论内容和博客标题搜索
+     * @param pageNo
+     * @param pageSize
+     * @param title
+     * @param content
+     * @return
+     */
+    Page<Comment> list(Integer pageNo, Integer pageSize, String title, String content);
+
+    /**
+     * 删除指定评论和回复它的评论
+     * @param id
+     */
+    void delete(Long id);
 }

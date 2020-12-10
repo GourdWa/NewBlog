@@ -1,15 +1,17 @@
 package com.hzx.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Comment;
 import com.hzx.blog.dao.CommentMapper;
+import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.CommentService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Zixiang Hu
@@ -21,6 +23,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private BlogService blogService;
 
     /**
      * 评论递归设置子评论
@@ -77,15 +81,50 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public boolean saveComment(Comment comment) {
         comment.setParentCommentId(comment.getParentComment().getId());
-//        Long parentCommentId = comment.getParentComment().getId();
-        //说明有父评论
-        /*if (parentCommentId != -1) {
-            comment.setParentComment(commentMapper.getOne(parentCommentId));
-        } else {
-            comment.setParentComment(null);
-        }*/
         comment.setCreateTime(new Date());
         int insert = commentMapper.insert(comment);
         return insert != 0;
+    }
+
+    @Override
+    public Page<Comment> list(Integer currentNo, Integer pageSize) {
+        Page<Comment> page = new Page<>(currentNo, pageSize);
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("create_time");
+        Page<Comment> commentPage = commentMapper.selectPage(page, queryWrapper);
+        commentPage.getRecords().forEach(
+                comment -> comment.setBlog(blogService.getBlogById(comment.getBlogId()))
+        );
+        return page;
+    }
+
+    @Override
+    @Transactional
+    public Page<Comment> list(Integer pageNo, Integer pageSize, String title, String content) {
+        Page<Comment> page = new Page<>(pageNo, pageSize);
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        if (content != null && content.trim().length() > 0)
+            queryWrapper.like("content", content.trim());
+        Page<Comment> commentPage = commentMapper.selectPage(page, queryWrapper);
+        //为这些评论设置关联博客
+        commentPage.getRecords().forEach(
+                comment -> comment.setBlog(blogService.getBlogById(comment.getBlogId()))
+        );
+        List<Comment> records = commentPage.getRecords();
+        //如果搜索条件还包含博客的标题，则筛选出符合条件的标题
+        if (title != null && title.trim().length() > 0) {
+            String aTitle = title.trim();
+            List<Comment> list = records.stream().filter(comment -> comment.getBlog().getTitle().contains(aTitle)).collect(Collectors.toList());
+            commentPage.setRecords(list);
+        }
+        return commentPage;
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id).or().eq("parent_comment_id", id);
+        commentMapper.delete(queryWrapper);
     }
 }

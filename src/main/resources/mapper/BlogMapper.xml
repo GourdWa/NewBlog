@@ -27,4 +27,12 @@
     <select id="getRecommendBlog" resultType="com.hzx.blog.bean.Blog">
         select * from new_blog.t_blog where published=true and recommend=true order by update_time desc limit #{size}
     </select>
+
+    <select id="getArchive" resultType="com.hzx.blog.bean.Archive">
+        SELECT DATE_FORMAT(create_time,"%Y") AS `year`,count(*) blogNum FROM t_blog where published=true GROUP BY DATE_FORMAT(create_time,"%Y")
+        ORDER BY DATE_FORMAT(create_time,"%Y") DESC;
+    </select>
+    <select id="getBlogByYear" resultType="com.hzx.blog.bean.Blog">
+         select * from t_blog  where published=true and DATE_FORMAT(create_time,"%Y")=#{year} order by create_time desc
+    </select>
 </mapper>

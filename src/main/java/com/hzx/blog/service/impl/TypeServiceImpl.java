@@ -1,11 +1,9 @@
 package com.hzx.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Blog;
 import com.hzx.blog.bean.Type;
-import com.hzx.blog.dao.BlogMapper;
 import com.hzx.blog.dao.TypeMapper;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TypeService;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

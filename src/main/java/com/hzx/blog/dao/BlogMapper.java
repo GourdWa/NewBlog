@@ -1,6 +1,8 @@
 package com.hzx.blog.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hzx.blog.bean.Archive;
 import com.hzx.blog.bean.Blog;
 import org.apache.ibatis.annotations.Param;
 
@@ -52,4 +54,12 @@ public interface BlogMapper extends BaseMapper<Blog> {
      * @return
      */
     boolean updateGoodJob(@Param("id") Long id,@Param("cnt") int goodJobCnt);
+
+    /**
+     * 统计每年发布的博客数量，并封装成Archive列表
+     * @return
+     */
+    List<Archive> getArchive();
+
+    Page<Blog> getBlogByYear(@Param("page") Page<?> page, @Param("year") Integer year);
 }

@@ -330,5 +330,17 @@ public class BlogServiceImpl implements BlogService {
         return blogPage;
     }
 
+    /***************************************************归档页面用***************************************************/
+    @Override
+    public List<Archive> getYearList() {
+        List<Archive> archives = blogMapper.getArchive();
+        return archives;
+    }
 
+    @Override
+    public Page<Blog> getBlogByYear(Integer currentNo, Integer pageSize, Integer year) {
+        Page<Blog> page = new Page<>(currentNo, pageSize);
+        Page<Blog> blogPage = blogMapper.getBlogByYear(page, year);
+        return blogPage;
+    }
 }
