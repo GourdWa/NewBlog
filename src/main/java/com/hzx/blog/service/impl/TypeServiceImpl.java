@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Blog;
 import com.hzx.blog.bean.Type;
 import com.hzx.blog.dao.TypeMapper;
+import com.hzx.blog.exception.CommonException;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,8 @@ public class TypeServiceImpl implements TypeService {
         Page<Blog> page = new Page<>(pageNo, pageSize);
         //获得该类型已经发表的博客
         Page<Blog> blogPage = blogService.getBlogsByTypeIdTop(id, page);
+        if (blogPage.getRecords().size() == 0)
+            throw new CommonException("该类型没有关联的博客");
         return blogPage;
     }
 }

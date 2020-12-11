@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Blog;
 import com.hzx.blog.bean.Tag;
 import com.hzx.blog.bean.Type;
+import com.hzx.blog.exception.CommonException;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.TagService;
 import com.hzx.blog.service.TypeService;
@@ -66,7 +67,7 @@ public class IndexController {
             model.addAttribute("blog", blogService.getAndConvert(id));
             return "blog";
         } else
-            return "redirect:/";
+            throw new CommonException("访问的博客不存在");
     }
 
     /**

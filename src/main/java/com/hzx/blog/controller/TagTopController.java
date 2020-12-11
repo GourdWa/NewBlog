@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Controller
 public class TagTopController {
-    private static final Integer PAGE_SIZE = 1;
+    private static final Integer PAGE_SIZE = 6;
     @Autowired
     private TagService tagService;
 

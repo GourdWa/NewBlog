@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<!--传参，使用_fragments中的head片段，同时传入title元素进行替换-->
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- semantic的CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+    <!-- 引入自定义的CSS样式 -->
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/static/css/me.css}">
+    <title>错误</title>
+</head>
+
+<body>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++导航+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <!-- tral是指定颜色 -->
+            <h2 class='ui teal header item'>Blog</h2>
+            <a href="#" class="m-item m-mobile-hide item"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class=" idea icon"></i>分类</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class=" tags icon"></i>标签</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item  m-mobile-hide item"><i class="info icon"></i>关于我</a>
+            <div class="right m-item  item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search~~~">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle icon black button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<div class="m-container-small m-padded-tb-massive">
+    <img src="images/error.jpg" th:src="@{/images/gaoshiqing.jpg}" class="ui center-pill">
+    <div class="ui error message">
+        <div class='ui container'>
+            <h2>页面飞走了</h2>
+            <!--            <p>对不起，你访问的资源不存在</p>-->
+            <div>
+                <p><b>请求时间：</b><span th:utext="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">message</span>
+                </p>
+                <p th:unless="${url}==null"><b>请求URL：</b><span th:utext="${url}">url</span></p>
+                <p><b>错误原因：</b><span th:utext="${message}">message</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++底部+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="../../static/images/QQ二维码.png" th:src="@{/static/images/QQ二维码.png}"
+                             class="ui rounded image"
+                             alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：132685188@qq.com</a>
+                    <a href="#" class="item">QQ：1312685188</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    这是我的个人博客，会分享任何我喜欢的内容
+                </p>
+            </div>
+        </div>
+        <div class="ui inverted section divider">
+            <br><br><br>
+            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright@ 2020 ZixiangHu All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -15,4 +15,8 @@ spring:
 comment:
   avatar: /images/avatar.png
 
+server:
+  error:
+    whitelabel:
+      enabled: false
 

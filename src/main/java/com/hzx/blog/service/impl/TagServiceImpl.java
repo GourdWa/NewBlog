@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.*;
 import com.hzx.blog.dao.TagMapper;
+import com.hzx.blog.exception.CommonException;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.BlogTagService;
 import com.hzx.blog.service.TagService;
@@ -134,6 +135,8 @@ public class TagServiceImpl implements TagService {
     @Override
     public Page<Blog> getBlogsByIdTop(Long id, Integer currentNo, Integer pageSize) {
         List<BlogTag> blogTags = blogTagService.getBlogTagByTagId(id);
+        if (blogTags == null || blogTags.size() == 0)
+            throw new CommonException("该标签没有关联的博客");
         //获取这些博客的id
         List<Long> blogIds = blogTags.stream().map(blogTag -> blogTag.getBlogId()).collect(Collectors.toList());
         //根据获取的博客id，获取已经发布的博客

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.*;
 import com.hzx.blog.dao.BlogMapper;
+import com.hzx.blog.exception.CommonException;
 import com.hzx.blog.service.*;
 import com.hzx.blog.utils.CheckUtil;
 import com.hzx.blog.utils.MarkDownUtil;
@@ -234,6 +235,9 @@ public class BlogServiceImpl implements BlogService {
         queryWrapper.eq("type_id", typeId).eq("published", true).orderByDesc("update_time");
         //为博客设置类型和标签
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        //防止人为输入的页面超过了总页面的数量
+        if (blogPage.getCurrent() > blogPage.getPages())
+            blogPage = getBlogsByTypeIdTop(typeId, new Page<>(blogPage.getPages(), blogPage.getSize()));
         return blogPage;
     }
 
@@ -247,6 +251,10 @@ public class BlogServiceImpl implements BlogService {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("published", true).in("id", blogIds).orderByDesc("update_time");
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        // 2020.12.11添加
+        //防止人为输入的页面超过了总页面的数量
+        if (blogPage.getCurrent() > blogPage.getPages())
+            blogPage = getBlogsByIdsTop(blogIds, new Page<>(blogPage.getPages(), blogPage.getSize()));
         return blogPage;
     }
 
@@ -267,6 +275,10 @@ public class BlogServiceImpl implements BlogService {
         queryWrapper.eq("published", true);
         //查询出来之后还要为这些博客的标签和类型赋值+作者
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        //2020.12.11+
+        //防止人为输入的页面超过了总页面的数量
+        if (blogPage.getCurrent() > blogPage.getPages())
+            blogPage = listTop((int) blogPage.getPages(), pageSize);
         return blogPage;
     }
 
@@ -294,6 +306,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getAndConvert(Long id) {
         Blog blog = blogMapper.selectById(id);
+        if (blog == null)
+            throw new CommonException("该博客不存在");
         Blog newBlog = new Blog();
         BeanUtils.copyProperties(blog, newBlog);
         String content = newBlog.getContent();
@@ -316,6 +330,10 @@ public class BlogServiceImpl implements BlogService {
                 and(w -> w.like("title", query).or().like("content", query)).
                 orderByDesc("update_time");
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
+        //2020.12.11+
+        //防止人为输入的页面超过了总页面的数量
+        if (blogPage.getCurrent() > blogPage.getPages())
+            blogPage = listBlogTop((int) blogPage.getPages(), pageSize, query);
         return blogPage;
     }
 
@@ -330,6 +348,8 @@ public class BlogServiceImpl implements BlogService {
     public Page<Blog> getBlogByYear(Integer currentNo, Integer pageSize, Integer year) {
         Page<Blog> page = new Page<>(currentNo, pageSize);
         Page<Blog> blogPage = blogMapper.getBlogByYear(page, year);
+        if (blogPage.getRecords().size() == 0)
+            throw new CommonException("搞事情？");
         return blogPage;
     }
 }
