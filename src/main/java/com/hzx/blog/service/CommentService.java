@@ -45,4 +45,11 @@ public interface CommentService {
      * @param id
      */
     void delete(Long id);
+
+    /**
+     * 根据评论id获取评论
+     * @param id
+     * @return
+     */
+    Comment getCommentById(Long id);
 }

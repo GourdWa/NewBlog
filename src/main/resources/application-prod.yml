@@ -4,7 +4,7 @@ logging:
   file:
     name: ./log/prod/blog_prod.log
 server:
-  port: 8079
+  port: 80
 spring:
 #  配置Redis
   redis:

@@ -8,12 +8,16 @@ import com.hzx.blog.dao.BlogMapper;
 import com.hzx.blog.dao.BlogTagMapper;
 import com.hzx.blog.dao.TypeMapper;
 import com.hzx.blog.dao.UserMapper;
+import com.hzx.blog.utils.EmailUtil;
 import com.hzx.blog.utils.MD5Utils;
 import org.junit.jupiter.api.Test;
 //import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -94,4 +98,22 @@ class BlogApplicationTests {
         System.out.println(num);
     }
 
+    @Autowired
+    JavaMailSenderImpl javaMailSender;
+
+    @Test
+    public void emailTest01() {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setSubject("Java邮件测试");
+        simpleMailMessage.setText("from new_blog");
+        simpleMailMessage.setTo("huzixiang_uestc@163.com");
+        simpleMailMessage.setFrom("1312685188@qq.com");
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Test
+    public void emailTest02() {
+//        EmailUtil.sendEmail("huzixiang_uestc@163.com", "开题阅读文献", "http://47.110.126.140/blog/54");
+        new EmailUtil().sendEmail("huzixiang_uestc@163.com","测试");
+    }
 }

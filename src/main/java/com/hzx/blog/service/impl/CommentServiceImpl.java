@@ -127,4 +127,9 @@ public class CommentServiceImpl implements CommentService {
         queryWrapper.eq("id", id).or().eq("parent_comment_id", id);
         commentMapper.delete(queryWrapper);
     }
+
+    @Override
+    public Comment getCommentById(Long id) {
+        return commentMapper.selectById(id);
+    }
 }

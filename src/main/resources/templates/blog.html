@@ -817,7 +817,7 @@
         $.ajax({
             url: "/updateGoodjob?id=" + blogid,
             success: function (result) {
-                if (result==true) {
+                if (result == true) {
                     var cnt = $("#goodJobCount").text()
                     console.log(cnt)
                     $("#goodJobCount").text(parseInt(cnt) + 1);
@@ -939,7 +939,9 @@
             "blog.id": $("[name='blog.id']").val(),
             "nickname": $("[name='nickname']").val(),
             "email": $("[name='email']").val(),
-            "content": $("[name='content']").val()
+            "content": $("[name='content']").val(),
+            /*20201218新增*/
+            "url": window.location.href
         }, function (responseTxt, statusTxt, xhr) {
             //提交留言后滚动到留言开始区域
             // $(window).scrollTo($('#comment-container'), 500);

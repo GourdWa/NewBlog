@@ -14,7 +14,7 @@ spring:
 #评论的头像
 comment:
   avatar: /images/avatar.png
-
+#不使用springboot配置的空白页面响应
 server:
   error:
     whitelabel:
