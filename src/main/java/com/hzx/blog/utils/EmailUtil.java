@@ -40,7 +40,8 @@ public class EmailUtil {
         javaMailSender.setUsername(emailUsername);
         javaMailSender.setPassword(emailPassword);
         javaMailSender.setDefaultEncoding("utf-8");
-        //如果是部署在阿里云服务器上一定要开启ssl校验同时设置端口为587，因为阿里云屏蔽了25端口
+        //如果是部署在阿里云服务器上一定要开启ssl校验同时设置端口为587，因为阿里云屏蔽了25端口，如果只是在单机上测试，下面的代码可不加
+        /*************************************************************************************************/
         javaMailSender.setPort(587);
         Properties properties1 = new Properties();
         properties1.setProperty("mail.smtp.auth", "true");//开启认证
@@ -50,7 +51,7 @@ public class EmailUtil {
         properties1.setProperty("mail.smtp.socketFactory.port", Integer.toString(587));//设置ssl端口
         properties.setProperty("mail.smtp.socketFactory.fallback", "false");
         properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
+        /***************************************************************************************************/
         javaMailSender.setJavaMailProperties(properties1);
         return javaMailSender;
     }

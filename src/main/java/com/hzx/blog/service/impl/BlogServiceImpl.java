@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Zixiang Hu
@@ -39,6 +41,17 @@ public class BlogServiceImpl implements BlogService {
     RedisTemplate typeRedisTemplate;
     @Autowired
     RedisTemplate tagRedisTemplate;
+    @Autowired
+    RedisTemplate blogRedisTemplate;
+
+    /**
+     * 删除Redis中所有的键值数据
+     */
+    public void flushRedis() {
+        Set<String> keys = blogRedisTemplate.keys("*");
+        Long deleteNum = blogRedisTemplate.delete(keys);
+        return;
+    }
 
     /**
      * 首先根据条件查询出分页数据，并配合Redis为博客的类型赋值
@@ -100,6 +113,8 @@ public class BlogServiceImpl implements BlogService {
         //建立博客和标签的映射
         String tagIds = blog.getTagIds();
         createBlogTagMap(tagIds, blog.getId());
+        // 2020.12.24+ 清除缓存
+        flushRedis();
         return blog;
     }
 
@@ -108,6 +123,8 @@ public class BlogServiceImpl implements BlogService {
     public boolean delete(Long blogId) {
         int deleteA = blogMapper.deleteById(blogId);
         if (deleteA > 0) {
+            // 2020.12.24+ 清除缓存
+            flushRedis();
             return blogTagService.delete(blogId);
         }
         return false;
@@ -151,6 +168,8 @@ public class BlogServiceImpl implements BlogService {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", blog1.getId());
         blogMapper.update(blog, queryWrapper);
+        // 2020.12.24+ 清除缓存
+        flushRedis();
         return blog1;
     }
 
@@ -291,8 +310,11 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public List<Blog> listRecommendBlogTop(int size) {
-
-        List<Blog> blogs = blogMapper.getRecommendBlog(size);
+        List<Blog> blogs = (List<Blog>) blogRedisTemplate.opsForValue().get("recommendBlog");
+        if (blogs == null) {
+            blogs = blogMapper.getRecommendBlog(size);
+            blogRedisTemplate.opsForValue().set("recommendBlog", blogs, 1, TimeUnit.HOURS);
+        }
         return blogs;
     }
 
@@ -305,21 +327,27 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public Blog getAndConvert(Long id) {
-        Blog blog = blogMapper.selectById(id);
-        if (blog == null)
-            throw new CommonException("该博客不存在");
-        Blog newBlog = new Blog();
-        BeanUtils.copyProperties(blog, newBlog);
-        String content = newBlog.getContent();
-        String htmlContent = MarkDownUtil.markdownToHtmlExtensions(content);
-        newBlog.setContent(htmlContent);
-        //更新浏览次数
-        blogMapper.updateViews(id);
-        //设置类型和标签
-        setTypeAndTags(newBlog);
-        User user = userService.getUserById(newBlog.getUserId());
-        newBlog.setUser(user);
-        return newBlog;
+        Blog blog = (Blog) blogRedisTemplate.opsForValue().get("blog_" + id);
+        if (blog != null)
+            return blog;
+        else {
+            blog = blogMapper.selectById(id);
+            if (blog == null)
+                throw new CommonException("该博客不存在");
+            Blog newBlog = new Blog();
+            BeanUtils.copyProperties(blog, newBlog);
+            String content = newBlog.getContent();
+            String htmlContent = MarkDownUtil.markdownToHtmlExtensions(content);
+            newBlog.setContent(htmlContent);
+            //更新浏览次数
+            blogMapper.updateViews(id);
+            //设置类型和标签
+            setTypeAndTags(newBlog);
+            User user = userService.getUserById(newBlog.getUserId());
+            newBlog.setUser(user);
+            blogRedisTemplate.opsForValue().set("blog_" + id, newBlog, 1, TimeUnit.HOURS);
+            return newBlog;
+        }
     }
 
     @Override

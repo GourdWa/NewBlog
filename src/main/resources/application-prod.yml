@@ -6,13 +6,14 @@ logging:
 server:
   port: 80
 spring:
-#  配置Redis
+  #  配置Redis
   redis:
     port: 6379
     host: 127.0.0.1 #这里用的是阿里云的服务器
-#  配置数据源
+  #  配置数据源
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/new_blog?serverTimezone=UTC
     username: root
     password: root
+    type: com.alibaba.druid.pool.DruidDataSource

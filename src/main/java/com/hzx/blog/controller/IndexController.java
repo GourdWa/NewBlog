@@ -64,7 +64,7 @@ public class IndexController {
         Blog blog = blogService.getAndConvert(id);
         //后台查验，是否该博客已经发布
         if (blog.isPublished()) { //需要将博客的内容转换为html
-            model.addAttribute("blog", blogService.getAndConvert(id));
+            model.addAttribute("blog", blog);
             return "blog";
         } else
             throw new CommonException("访问的博客不存在");

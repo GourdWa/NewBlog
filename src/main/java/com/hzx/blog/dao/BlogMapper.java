@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hzx.blog.bean.Archive;
 import com.hzx.blog.bean.Blog;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @description
  * @create 2020-11-12-20:43
  */
+@Mapper
 public interface BlogMapper extends BaseMapper<Blog> {
     /**
      * 无重复的返回已发布博客的类型id列表
