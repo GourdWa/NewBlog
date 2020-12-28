@@ -35,7 +35,8 @@
                     class=" idea icon"></i>分类</a>
             <a href="#" th:href="@{/tags/-1}" class="m-item  m-mobile-hide item" th:classappend="${n==3}?'active'"><i
                     class=" tags icon"></i>标签</a>
-            <a href="#" th:href="@{/archives/-1}" class="m-item  m-mobile-hide item" th:classappend="${n==4}?'active'"><i
+            <a href="#" th:href="@{/archives/-1}" class="m-item  m-mobile-hide item"
+               th:classappend="${n==4}?'active'"><i
                     class="clone icon"></i>归档</a>
             <a href="#" th:href="@{/about}" class="m-item  m-mobile-hide item" th:classappend="${n==5}?'active'"><i
                     class="info icon"></i>关于我</a>
@@ -92,7 +93,11 @@
         </div>
         <div class="ui inverted section divider">
             <br><br><br>
-            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright@ 2020 ZixiangHu All Rights Reserved</p>
+            <p class="m-text-thin m-text-spaced m-opacity-mini"><a href="http://beian.miit.gov.cn/"  style="color: #9D9D9E">蜀ICP备2020037068号</a>
+            </p>
+            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright@<span
+                    th:text="${#dates.format(new java.util.Date().getTime(),'yyyy') }">2020</span>
+                ZixiangHu All Rights Reserved</p>
         </div>
     </div>
 </footer>
