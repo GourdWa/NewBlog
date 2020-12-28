@@ -38,6 +38,8 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogTagService blogTagService;
     @Autowired
+    private CommentService commentService;
+    @Autowired
     RedisTemplate typeRedisTemplate;
     @Autowired
     RedisTemplate tagRedisTemplate;
@@ -125,6 +127,8 @@ public class BlogServiceImpl implements BlogService {
         if (deleteA > 0) {
             // 2020.12.24+ 清除缓存
             flushRedis();
+            // 2020.12.28+ 删除该博客时需要将该博客下的所有评论都要删除
+            commentService.deleteByBlogId(blogId);
             return blogTagService.delete(blogId);
         }
         return false;
@@ -255,7 +259,7 @@ public class BlogServiceImpl implements BlogService {
         //为博客设置类型和标签
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         //防止人为输入的页面超过了总页面的数量
-        if (blogPage.getCurrent() > blogPage.getPages())
+        if (blogPage.getCurrent() > blogPage.getPages() && blogPage.getPages() != 0)
             blogPage = getBlogsByTypeIdTop(typeId, new Page<>(blogPage.getPages(), blogPage.getSize()));
         return blogPage;
     }
@@ -272,7 +276,7 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         // 2020.12.11添加
         //防止人为输入的页面超过了总页面的数量
-        if (blogPage.getCurrent() > blogPage.getPages())
+        if (blogPage.getCurrent() > blogPage.getPages() && blogPage.getPages() != 0)
             blogPage = getBlogsByIdsTop(blogIds, new Page<>(blogPage.getPages(), blogPage.getSize()));
         return blogPage;
     }
@@ -296,7 +300,7 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         //2020.12.11+
         //防止人为输入的页面超过了总页面的数量
-        if (blogPage.getCurrent() > blogPage.getPages())
+        if (blogPage.getCurrent() > blogPage.getPages() && blogPage.getPages() != 0)
             blogPage = listTop((int) blogPage.getPages(), pageSize);
         return blogPage;
     }
@@ -328,9 +332,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getAndConvert(Long id) {
         Blog blog = (Blog) blogRedisTemplate.opsForValue().get("blog_" + id);
-        if (blog != null)
+        if (blog != null) {
+            /*
+            * 2020.12.28+ 从Redis中读出数据后还要更新浏览次数和点赞数
+            * */
+            Blog blogFromDB = blogMapper.selectById(id);
+            blog.setViews(blogFromDB.getViews());
+            blog.setGoodJob(blogFromDB.getGoodJob());
             return blog;
-        else {
+        } else {
             blog = blogMapper.selectById(id);
             if (blog == null)
                 throw new CommonException("该博客不存在");
@@ -360,7 +370,7 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         //2020.12.11+
         //防止人为输入的页面超过了总页面的数量
-        if (blogPage.getCurrent() > blogPage.getPages())
+        if (blogPage.getCurrent() > blogPage.getPages() && blogPage.getPages() != 0)
             blogPage = listBlogTop((int) blogPage.getPages(), pageSize, query);
         return blogPage;
     }

@@ -52,4 +52,11 @@ public interface CommentService {
      * @return
      */
     Comment getCommentById(Long id);
+
+    /**
+     * 根据博客id删除该博客下的评论
+     * @param blogId
+     * @return
+     */
+    Integer deleteByBlogId(Long blogId);
 }

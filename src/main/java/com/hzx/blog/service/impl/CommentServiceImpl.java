@@ -132,4 +132,11 @@ public class CommentServiceImpl implements CommentService {
     public Comment getCommentById(Long id) {
         return commentMapper.selectById(id);
     }
+
+    @Override
+    public Integer deleteByBlogId(Long blogId) {
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("blog_id", blogId);
+        return commentMapper.delete(queryWrapper);
+    }
 }
