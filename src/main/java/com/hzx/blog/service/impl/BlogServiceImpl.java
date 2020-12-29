@@ -334,6 +334,10 @@ public class BlogServiceImpl implements BlogService {
         Blog blog = (Blog) blogRedisTemplate.opsForValue().get("blog_" + id);
         if (blog != null) {
             /*
+            * 2020.12.29+ 更新浏览次数
+            * */
+            blogMapper.updateViews(id);
+            /*
             * 2020.12.28+ 从Redis中读出数据后还要更新浏览次数和点赞数
             * */
             Blog blogFromDB = blogMapper.selectById(id);

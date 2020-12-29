@@ -121,14 +121,19 @@ public class TagServiceImpl implements TagService {
         List<Tag> tags = new ArrayList<>();
         //首先需要查询出全部已经发布的博客的id集合，然后再去映射表blog_tag中查询tag的id，并且这些tag对应的博客必须是发布的
         List<Integer> blogIdList = blogService.getPublishedIdList();
-        //获得包含最多发布博客的前size个标签的id
-        List<TagPublishedBlogNum> tagPublishedBlogNums = blogTagService.getPublishedTagIds(size, blogIdList);
-        for (TagPublishedBlogNum tagPublishedBlogNum : tagPublishedBlogNums) {
-            Tag tag = tagMapper.selectById(tagPublishedBlogNum.getTagId());
-            tag.setPublishedBlogNum(tagPublishedBlogNum.getPublishedBlogNum());
-            tags.add(tag);
+        /*
+        * 2020.12.28+ 判断blogIdList是否为空，避免前端页面报错
+        * */
+        if (blogIdList.size() != 0) {
+            //获得包含最多发布博客的前size个标签的id
+            List<TagPublishedBlogNum> tagPublishedBlogNums = blogTagService.getPublishedTagIds(size, blogIdList);
+            for (TagPublishedBlogNum tagPublishedBlogNum : tagPublishedBlogNums) {
+                Tag tag = tagMapper.selectById(tagPublishedBlogNum.getTagId());
+                tag.setPublishedBlogNum(tagPublishedBlogNum.getPublishedBlogNum());
+                tags.add(tag);
+            }
+            Collections.sort(tags);
         }
-        Collections.sort(tags);
         return tags;
     }
 
