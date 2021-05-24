@@ -255,7 +255,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Page<Blog> getBlogsByTypeIdTop(Long typeId, Page<Blog> page) {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("type_id", typeId).eq("published", true).orderByDesc("update_time");
+        // 2021.05.24修改为按创建时间排序
+        queryWrapper.eq("type_id", typeId).eq("published", true).orderByDesc("create_time");
         //为博客设置类型和标签
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         //防止人为输入的页面超过了总页面的数量
@@ -272,7 +273,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Page<Blog> getBlogsByIdsTop(List<Long> blogIds, Page<Blog> page) {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("published", true).in("id", blogIds).orderByDesc("update_time");
+        // 2021.05.24修改为按创建时间排序
+        queryWrapper.eq("published", true).in("id", blogIds).orderByDesc("create_time");
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         // 2020.12.11添加
         //防止人为输入的页面超过了总页面的数量
@@ -293,7 +295,8 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> page = new Page<>(currentNo, pageSize);
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         //根据更新时间排序
-        queryWrapper.orderByDesc("update_time");
+        // 2021.05.24修改为按创建时间排序
+        queryWrapper.orderByDesc("create_time");
         //只返回已经发布的博客，保存的博客不要展示出来
         queryWrapper.eq("published", true);
         //查询出来之后还要为这些博客的标签和类型赋值+作者
@@ -370,7 +373,7 @@ public class BlogServiceImpl implements BlogService {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("published", true).
                 and(w -> w.like("title", query).or().like("content", query)).
-                orderByDesc("update_time");
+                orderByDesc("create_time");
         Page<Blog> blogPage = setTypeAndTags(page, queryWrapper);
         //2020.12.11+
         //防止人为输入的页面超过了总页面的数量
