@@ -1,0 +1,382 @@
+2020-12-31 16:33:36.467  INFO 13260 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 13260 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2020-12-31 16:33:36.477 DEBUG 13260 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-12-31 16:33:36.477  INFO 13260 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: dev
+2020-12-31 16:33:36.531  INFO 13260 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-12-31 16:33:36.531  INFO 13260 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-12-31 16:33:37.255  INFO 13260 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-12-31 16:33:37.257  INFO 13260 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-12-31 16:33:37.282  INFO 13260 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2020-12-31 16:33:37.800  INFO 13260 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8060 (http)
+2020-12-31 16:33:37.808  INFO 13260 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-12-31 16:33:37.808  INFO 13260 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-31 16:33:37.864  INFO 13260 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-31 16:33:37.864  INFO 13260 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1332 ms
+2020-12-31 16:33:37.951  INFO 13260 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-12-31 16:33:38.062  INFO 13260 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-12-31 16:33:38.286  WARN 13260 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2020-12-31 16:33:39.050  INFO 13260 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-31 16:33:39.132  INFO 13260 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-12-31 16:33:39.497  INFO 13260 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-12-31 16:33:39.527  INFO 13260 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8060 (http) with context path ''
+2020-12-31 16:33:39.534  INFO 13260 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 4.132 seconds (JVM running for 4.803)
+2020-12-31 16:33:55.053  INFO 13260 --- [http-nio-8060-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-31 16:33:55.054  INFO 13260 --- [http-nio-8060-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-12-31 16:33:55.061  INFO 13260 --- [http-nio-8060-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-12-31 16:33:58.668 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.UserMapper.selectOne    : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE (username = ? AND password = ?)
+2020-12-31 16:33:58.682 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.UserMapper.selectOne    : ==> Parameters: zixianghu(String), f976e2029df2e37f146216f08cfe01fc(String)
+2020-12-31 16:33:58.723 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.UserMapper.selectOne    : <==      Total: 1
+2020-12-31 16:33:59.019  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:33:59.524 DEBUG 13260 --- [http-nio-8060-exec-4] c.h.b.dao.BlogMapper.getRecommendBlog    : ==>  Preparing: select * from new_blog.t_blog where published=true and recommend=true order by update_time desc limit ?
+2020-12-31 16:33:59.524 DEBUG 13260 --- [http-nio-8060-exec-4] c.h.b.dao.BlogMapper.getRecommendBlog    : ==> Parameters: 3(Integer)
+2020-12-31 16:33:59.527 DEBUG 13260 --- [http-nio-8060-exec-4] c.h.b.dao.BlogMapper.getRecommendBlog    : <==      Total: 0
+2020-12-31 16:33:59.537  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:00.187 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog
+2020-12-31 16:34:00.187 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:00.196 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:00.199 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog ORDER BY update_time DESC LIMIT ?
+2020-12-31 16:34:00.200 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: 6(Long)
+2020-12-31 16:34:00.204 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 3
+2020-12-31 16:34:00.207 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:00.207 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Long)
+2020-12-31 16:34:00.210 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:00.210 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:00.210 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:34:00.211 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:00.212 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:00.212 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:34:00.213 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:00.213 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectList   : ==>  Preparing: SELECT id,name FROM t_type
+2020-12-31 16:34:00.213 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectList   : ==> Parameters: 
+2020-12-31 16:34:00.215 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectList   : <==      Total: 10
+2020-12-31 16:34:00.506  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:00.525  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:02.233 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TagMapper.selectList    : ==>  Preparing: SELECT id,name FROM t_tag
+2020-12-31 16:34:02.233 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TagMapper.selectList    : ==> Parameters: 
+2020-12-31 16:34:02.237 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TagMapper.selectList    : <==      Total: 15
+2020-12-31 16:34:02.237 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : ==>  Preparing: SELECT id,name FROM t_type
+2020-12-31 16:34:02.237 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : ==> Parameters: 
+2020-12-31 16:34:02.240 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : <==      Total: 10
+2020-12-31 16:34:02.514  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:02.516  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:21.478 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_type
+2020-12-31 16:34:21.478 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:21.480 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:21.480 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : ==>  Preparing: SELECT id,name FROM t_type LIMIT ?
+2020-12-31 16:34:21.480 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : ==> Parameters: 5(Long)
+2020-12-31 16:34:21.482 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : <==      Total: 5
+2020-12-31 16:34:21.770  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:21.771  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:23.177 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_type
+2020-12-31 16:34:23.177 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:23.179 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.TypeMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:23.180 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectPage   : ==>  Preparing: SELECT id,name FROM t_type LIMIT ?,?
+2020-12-31 16:34:23.180 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectPage   : ==> Parameters: 5(Long), 5(Long)
+2020-12-31 16:34:23.181 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectPage   : <==      Total: 5
+2020-12-31 16:34:23.438  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:23.440  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:24.419 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_type
+2020-12-31 16:34:24.419 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:24.421 DEBUG 13260 --- [http-nio-8060-exec-3] c.h.b.dao.TypeMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:24.422 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : ==>  Preparing: SELECT id,name FROM t_type LIMIT ?
+2020-12-31 16:34:24.422 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : ==> Parameters: 5(Long)
+2020-12-31 16:34:24.424 DEBUG 13260 --- [http-nio-8060-exec-3] com.hzx.blog.dao.TypeMapper.selectPage   : <==      Total: 5
+2020-12-31 16:34:24.674  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:24.675  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:26.505  INFO 13260 --- [http-nio-8060-exec-3] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:26.507  INFO 13260 --- [http-nio-8060-exec-3] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:31.810 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectOne    : ==>  Preparing: SELECT id,name FROM t_type WHERE (name = ?)
+2020-12-31 16:34:31.811 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectOne    : ==> Parameters: MySQL(String)
+2020-12-31 16:34:31.812 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectOne    : <==      Total: 0
+2020-12-31 16:34:31.812 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.insert       : ==>  Preparing: INSERT INTO t_type ( name ) VALUES ( ? )
+2020-12-31 16:34:31.813 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.insert       : ==> Parameters: MySQL(String)
+2020-12-31 16:34:31.814 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.insert       : <==    Updates: 1
+2020-12-31 16:34:31.842 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_type
+2020-12-31 16:34:31.842 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.TypeMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:31.844 DEBUG 13260 --- [http-nio-8060-exec-10] c.h.b.dao.TypeMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:31.844 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectPage   : ==>  Preparing: SELECT id,name FROM t_type LIMIT ?
+2020-12-31 16:34:31.844 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectPage   : ==> Parameters: 5(Long)
+2020-12-31 16:34:31.845 DEBUG 13260 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectPage   : <==      Total: 5
+2020-12-31 16:34:32.090  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:32.091  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:33.116 DEBUG 13260 --- [http-nio-8060-exec-2] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog
+2020-12-31 16:34:33.116 DEBUG 13260 --- [http-nio-8060-exec-2] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:34:33.118 DEBUG 13260 --- [http-nio-8060-exec-2] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:34:33.118 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog ORDER BY update_time DESC LIMIT ?
+2020-12-31 16:34:33.118 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: 6(Long)
+2020-12-31 16:34:33.122 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 3
+2020-12-31 16:34:33.123 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:33.123 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Long)
+2020-12-31 16:34:33.124 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:33.124 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:33.124 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:34:33.125 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:33.126 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:34:33.126 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:34:33.127 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:34:33.127 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectList   : ==>  Preparing: SELECT id,name FROM t_type
+2020-12-31 16:34:33.127 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectList   : ==> Parameters: 
+2020-12-31 16:34:33.128 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.TypeMapper.selectList   : <==      Total: 11
+2020-12-31 16:34:33.379  INFO 13260 --- [http-nio-8060-exec-8] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:33.380  INFO 13260 --- [http-nio-8060-exec-8] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:34:34.134 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TagMapper.selectList    : ==>  Preparing: SELECT id,name FROM t_tag
+2020-12-31 16:34:34.135 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TagMapper.selectList    : ==> Parameters: 
+2020-12-31 16:34:34.137 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TagMapper.selectList    : <==      Total: 15
+2020-12-31 16:34:34.137 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TypeMapper.selectList   : ==>  Preparing: SELECT id,name FROM t_type
+2020-12-31 16:34:34.137 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TypeMapper.selectList   : ==> Parameters: 
+2020-12-31 16:34:34.138 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.TypeMapper.selectList   : <==      Total: 11
+2020-12-31 16:34:34.394  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:34:34.395  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:35:09.382 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.insert       : ==>  Preparing: INSERT INTO t_blog ( title, content, first_picture, flag, description, views, good_job, appreciation, share_statement, commentabled, published, recommend, create_time, update_time, type_id, user_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2020-12-31 16:35:09.384 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.insert       : ==> Parameters: MySQL存储引擎特点(String), #### InnoDB
+
+* 支持事务
+* 行锁设计
+* 支持外键
+* 从MySQL5.6之后开始支持全文索引
+* 支持非锁定读，即读操作不会产生锁
+* 提供多版本并发控制（MVCC），实现了4种隔离级别
+  * Read Uncommitted（读取未提交内容）
+  * Read Committed（读取提交内容）
+  * Repeatable Read（可重读，默认级别）
+  * Serializable（可串行化）
+* 使用自适应哈希索引和二次写等提高了可用性和性能
+
+#### MyISAM
+
+* 不支持事务
+* 表锁设计
+* 支持全文检索
+* 缓存池只缓存索引文件不缓存数据文件，数据文件缓存交给操作系统
+
+#### NDB
+
+* 集群存储引擎
+* 数据全部放在内存（MySQL5.1之后可以将非索引数据放在磁盘），因此主键查找特别快
+* 连接操作在MySql数据库层完成，不是存储引擎，因此复杂连接需要很大的网络开销，查询速度很慢
+
+#### Memory
+
+* 数据放在内存中，宕机或重启后数据将消失
+* 存储引擎使用哈希索引不是B+树索引
+* 只支持表锁，并发性差
+
+#### Archive
+
+* 只支持INSERT和SELECT操作（从MySQL5.1开始支持索引）
+* 适合存储归档数据
+
+#### Maria
+
+* 目的是取代MyISAM
+* 支持缓存数据和索引文件
+* 使用行锁设计
+* 提供MVCC功能
+* 支持事务和非事务安全
+* 更好的BLOB字符处理性能
+
+(String), https://zixianghu-images.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E9%A6%96%E5%9B%BE/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/MySQL/Mysql%E5%9B%BE%E6%A0%87.png(String), 原创(String), MySQL常见存储引擎特点(String), 0(Integer), 0(Integer), false(Boolean), true(Boolean), true(Boolean), true(Boolean), false(Boolean), 2020-12-31 16:35:09.381(Timestamp), 2020-12-31 16:35:09.381(Timestamp), 16(Long), 1(Long)
+2020-12-31 16:35:09.385 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.insert       : <==    Updates: 1
+2020-12-31 16:35:09.386 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.insert        : ==>  Preparing: INSERT INTO t_tag ( name ) VALUES ( ? )
+2020-12-31 16:35:09.387 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.insert        : ==> Parameters: 存储引擎(String)
+2020-12-31 16:35:09.387 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.insert        : <==    Updates: 1
+2020-12-31 16:35:09.388 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogTagMapper.insert    : ==>  Preparing: INSERT INTO t_blog_tag ( blog_id, tag_id ) VALUES ( ?, ? )
+2020-12-31 16:35:09.388 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogTagMapper.insert    : ==> Parameters: 80(Long), 20(Long)
+2020-12-31 16:35:09.391 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogTagMapper.insert    : <==    Updates: 1
+2020-12-31 16:35:09.412 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog
+2020-12-31 16:35:09.413 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: 
+2020-12-31 16:35:09.414 DEBUG 13260 --- [http-nio-8060-exec-6] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:35:09.414 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog ORDER BY update_time DESC LIMIT ?
+2020-12-31 16:35:09.414 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: 6(Long)
+2020-12-31 16:35:09.418 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 4
+2020-12-31 16:35:09.418 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:09.419 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Long)
+2020-12-31 16:35:09.420 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:09.420 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:09.420 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Long)
+2020-12-31 16:35:09.421 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:09.421 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:09.422 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:35:09.422 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:09.422 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:09.423 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:35:09.423 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:09.423 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : ==>  Preparing: SELECT id,name FROM t_type
+2020-12-31 16:35:09.424 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : ==> Parameters: 
+2020-12-31 16:35:09.424 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.TypeMapper.selectList   : <==      Total: 11
+2020-12-31 16:35:09.693  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:35:09.694 DEBUG 13260 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : ==>  Preparing: select * from new_blog.t_blog where published=true and recommend=true order by update_time desc limit ?
+2020-12-31 16:35:09.695 DEBUG 13260 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : ==> Parameters: 3(Integer)
+2020-12-31 16:35:09.696 DEBUG 13260 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : <==      Total: 0
+2020-12-31 16:35:09.697  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:35:19.056  INFO 13260 --- [http-nio-8060-exec-8] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.index', args=[{}, null]}
+2020-12-31 16:35:19.060 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog WHERE (published = ?)
+2020-12-31 16:35:19.060 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: true(Boolean)
+2020-12-31 16:35:19.061 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2020-12-31 16:35:19.062 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE (published = ?) ORDER BY update_time DESC LIMIT ?
+2020-12-31 16:35:19.062 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: true(Boolean), 6(Long)
+2020-12-31 16:35:19.063 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 1
+2020-12-31 16:35:19.064 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2020-12-31 16:35:19.064 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:35:19.064 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:19.065 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:19.065 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Long)
+2020-12-31 16:35:19.065 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:19.066 DEBUG 13260 --- [http-nio-8060-exec-8] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2020-12-31 16:35:19.066 DEBUG 13260 --- [http-nio-8060-exec-8] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 80(Long)
+2020-12-31 16:35:19.067 DEBUG 13260 --- [http-nio-8060-exec-8] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2020-12-31 16:35:19.067 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2020-12-31 16:35:19.068 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2020-12-31 16:35:19.068 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2020-12-31 16:35:19.069 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==>  Preparing: select type_id from new_blog.t_blog where published=true group by type_id order by count(type_id) desc limit ?; -- select distinct type_id from new_blog.t_blog where published=true;
+2020-12-31 16:35:19.069 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==> Parameters: 6(Integer)
+2020-12-31 16:35:19.070 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.BlogMapper.getPublishedTypeIds   : <==      Total: 1
+2020-12-31 16:35:19.071 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:19.071 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Integer)
+2020-12-31 16:35:19.072 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:19.072 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==>  Preparing: select count(*) from new_blog.t_blog where published=true and type_id=?
+2020-12-31 16:35:19.073 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==> Parameters: 16(Integer)
+2020-12-31 16:35:19.073 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getBlogNumByPublishedAndTypeId : <==      Total: 1
+2020-12-31 16:35:19.074 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.getPublishedIdList  : ==>  Preparing: select id from new_blog.t_blog where published=true;
+2020-12-31 16:35:19.074 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.getPublishedIdList  : ==> Parameters: 
+2020-12-31 16:35:19.074 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.dao.BlogMapper.getPublishedIdList  : <==      Total: 1
+2020-12-31 16:35:19.076 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getPublishedTagIds             : ==>  Preparing: select tag_id tagId,count(tag_id) publishedBlogNum from new_blog.t_blog_tag where blog_id in ( ? ) group by tag_id order by count(tag_id) desc limit ?;
+2020-12-31 16:35:19.076 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getPublishedTagIds             : ==> Parameters: 80(Integer), 8(Integer)
+2020-12-31 16:35:19.077 DEBUG 13260 --- [http-nio-8060-exec-8] c.h.b.d.B.getPublishedTagIds             : <==      Total: 1
+2020-12-31 16:35:19.077 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2020-12-31 16:35:19.078 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2020-12-31 16:35:19.078 DEBUG 13260 --- [http-nio-8060-exec-8] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2020-12-31 16:35:19.079  INFO 13260 --- [http-nio-8060-exec-8] com.hzx.blog.aspect.LogAspect            : 返回结果 : index
+2020-12-31 16:35:19.361  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:35:19.363  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:35:20.529  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:35:20.531 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:35:20.531 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:35:20.532 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:20.558 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:35:20.558 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:35:20.561 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:35:20.561 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2020-12-31 16:35:20.561 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Long)
+2020-12-31 16:35:20.562 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:20.563 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2020-12-31 16:35:20.563 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 80(Long)
+2020-12-31 16:35:20.563 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2020-12-31 16:35:20.564 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2020-12-31 16:35:20.564 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2020-12-31 16:35:20.564 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2020-12-31 16:35:20.565 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2020-12-31 16:35:20.565 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2020-12-31 16:35:20.566 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:20.590  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:35:20.871  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:35:20.872  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:35:20.905  INFO 13260 --- [http-nio-8060-exec-3] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:35:20.910 DEBUG 13260 --- [http-nio-8060-exec-3] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:35:20.911 DEBUG 13260 --- [http-nio-8060-exec-3] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:35:20.913 DEBUG 13260 --- [http-nio-8060-exec-3] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:35:20.915  INFO 13260 --- [http-nio-8060-exec-3] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:35:52.129  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:35:52.146 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:35:52.147 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:35:52.149 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:35:52.149 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:35:52.149 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:35:52.151 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:35:52.151  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:35:52.424  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:35:52.425  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:35:52.458  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:35:52.459 DEBUG 13260 --- [http-nio-8060-exec-5] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:35:52.460 DEBUG 13260 --- [http-nio-8060-exec-5] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:35:52.460 DEBUG 13260 --- [http-nio-8060-exec-5] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:35:52.462  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:36:05.121  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:36:05.123 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:36:05.123 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:36:05.126 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:36:05.126 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:36:05.126 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:36:05.129 DEBUG 13260 --- [http-nio-8060-exec-9] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:36:05.129  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:36:05.414  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:36:05.416  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:36:05.447  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:36:05.449 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:36:05.449 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:36:05.450 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:36:05.451  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:36:30.341  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:36:30.343 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:36:30.344 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:36:30.346 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:36:30.346 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:36:30.346 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:36:30.347 DEBUG 13260 --- [http-nio-8060-exec-2] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:36:30.347  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:36:30.639  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:36:30.641  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:36:30.671  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:36:30.673 DEBUG 13260 --- [http-nio-8060-exec-6] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:36:30.673 DEBUG 13260 --- [http-nio-8060-exec-6] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:36:30.674 DEBUG 13260 --- [http-nio-8060-exec-6] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:36:30.675  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:37:46.106  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:37:46.113 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:37:46.113 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:37:46.115 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:37:46.116 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:37:46.116 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:37:46.117 DEBUG 13260 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:37:46.117  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:37:46.397  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:37:46.398  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:37:46.429  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:37:46.430 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:37:46.431 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:37:46.431 DEBUG 13260 --- [http-nio-8060-exec-4] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:37:46.432  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:38:04.498  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:38:04.500 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:38:04.500 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:38:04.503 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:38:04.503 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:38:04.503 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:38:04.504 DEBUG 13260 --- [http-nio-8060-exec-7] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:38:04.505  INFO 13260 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:38:04.787  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:38:04.788  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:38:04.818  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:38:04.820 DEBUG 13260 --- [http-nio-8060-exec-1] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:38:04.820 DEBUG 13260 --- [http-nio-8060-exec-1] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:38:04.821 DEBUG 13260 --- [http-nio-8060-exec-1] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:38:04.822  INFO 13260 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:38:55.931  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:38:55.934 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:38:55.934 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:38:55.937 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:38:55.937 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:38:55.937 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:38:55.939 DEBUG 13260 --- [http-nio-8060-exec-4] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:38:55.939  INFO 13260 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:38:56.357  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:38:56.358  INFO 13260 --- [http-nio-8060-exec-2] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:38:56.390  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:38:56.392 DEBUG 13260 --- [http-nio-8060-exec-10] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:38:56.393 DEBUG 13260 --- [http-nio-8060-exec-10] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:38:56.393 DEBUG 13260 --- [http-nio-8060-exec-10] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:38:56.394  INFO 13260 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList
+2020-12-31 16:39:15.330  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/blog/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.blog', args=[80, {}]}
+2020-12-31 16:39:15.332 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.updateViews  : ==>  Preparing: update new_blog.t_blog set views = views+1 where id=?;
+2020-12-31 16:39:15.332 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.updateViews  : ==> Parameters: 80(Long)
+2020-12-31 16:39:15.334 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.updateViews  : <==    Updates: 1
+2020-12-31 16:39:15.334 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectById   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE id=?
+2020-12-31 16:39:15.334 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectById   : ==> Parameters: 80(Long)
+2020-12-31 16:39:15.335 DEBUG 13260 --- [http-nio-8060-exec-6] com.hzx.blog.dao.BlogMapper.selectById   : <==      Total: 1
+2020-12-31 16:39:15.335  INFO 13260 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog
+2020-12-31 16:39:15.873  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2020-12-31 16:39:15.874  INFO 13260 --- [http-nio-8060-exec-5] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2020-12-31 16:39:15.930  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/comments/80', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.CommentTopController.comments', args=[80, {}]}
+2020-12-31 16:39:15.933 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.CommentMapper.selectList  : ==>  Preparing: SELECT id,nickname,email,content,avatar,create_time,admin_comment,blog_id,parent_comment_id FROM t_comment WHERE (blog_id = ? AND parent_comment_id = ?)
+2020-12-31 16:39:15.933 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.CommentMapper.selectList  : ==> Parameters: 80(Long), -1(Integer)
+2020-12-31 16:39:15.934 DEBUG 13260 --- [http-nio-8060-exec-9] c.hzx.blog.dao.CommentMapper.selectList  : <==      Total: 0
+2020-12-31 16:39:15.935  INFO 13260 --- [http-nio-8060-exec-9] com.hzx.blog.aspect.LogAspect            : 返回结果 : blog :: commentList

@@ -1,0 +1,21 @@
+2020-12-28 09:36:45.450  INFO 15616 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 15616 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2020-12-28 09:36:45.454 DEBUG 15616 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-12-28 09:36:45.454  INFO 15616 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2020-12-28 09:36:45.488  INFO 15616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-12-28 09:36:45.489  INFO 15616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-12-28 09:36:45.894  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-12-28 09:36:45.896  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-12-28 09:36:45.915  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 Redis repository interfaces.
+2020-12-28 09:36:46.362  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-12-28 09:36:46.368  INFO 15616 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-12-28 09:36:46.368  INFO 15616 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-28 09:36:46.416  INFO 15616 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-28 09:36:46.416  INFO 15616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 927 ms
+2020-12-28 09:36:46.488  INFO 15616 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-12-28 09:36:46.605  INFO 15616 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-12-28 09:36:46.785  WARN 15616 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2020-12-28 09:36:47.495  INFO 15616 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:36:47.563  INFO 15616 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-12-28 09:36:47.885  INFO 15616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-12-28 09:36:47.911  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-12-28 09:36:47.917  INFO 15616 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 2.746 seconds (JVM running for 3.271)

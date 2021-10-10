@@ -1,0 +1,125 @@
+2021-03-17 16:03:29.150  INFO 16276 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 16276 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:03:29.164 DEBUG 16276 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:03:29.165  INFO 16276 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:03:29.206  INFO 16276 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:03:29.206  INFO 16276 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:04:11.992  INFO 16276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:04:11.994  INFO 16276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:04:12.022  INFO 16276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
+2021-03-17 16:04:12.624  INFO 16276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:04:12.690  INFO 16276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 43484 ms
+2021-03-17 16:04:12.776  INFO 16276 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:04:12.910  INFO 16276 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:04:13.147  WARN 16276 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:04:14.009  INFO 16276 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:04:14.093  INFO 16276 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:04:14.510  INFO 16276 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:04:14.541  INFO 16276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:04:14.551  INFO 16276 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 45.767 seconds (JVM running for 47.104)
+2021-03-17 16:04:14.718  INFO 16276 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:04:14.731  INFO 16276 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:04:43.543  INFO 4888 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 4888 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:04:43.545 DEBUG 4888 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:04:43.545  INFO 4888 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:04:43.579  INFO 4888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:04:43.580  INFO 4888 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:04:58.041  INFO 4888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:04:58.043  INFO 4888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:04:58.066  INFO 4888 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2021-03-17 16:04:58.596  INFO 4888 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:04:58.657  INFO 4888 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 15077 ms
+2021-03-17 16:04:58.738  INFO 4888 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:04:58.874  INFO 4888 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:04:59.080  WARN 4888 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:04:59.874  INFO 4888 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:04:59.953  INFO 4888 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:05:00.338  INFO 4888 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:05:00.367  INFO 4888 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:05:00.374  INFO 4888 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 17.167 seconds (JVM running for 17.812)
+2021-03-17 16:05:00.542  INFO 4888 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:05:00.568  INFO 4888 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:05:06.484  INFO 13884 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 13884 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:05:06.486 DEBUG 13884 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:05:06.486  INFO 13884 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:05:06.522  INFO 13884 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:05:06.522  INFO 13884 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:08:07.340  INFO 13884 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:08:07.341  INFO 13884 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:08:07.364  INFO 13884 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2021-03-17 16:08:07.886  INFO 13884 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:08:07.947  INFO 13884 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 181424 ms
+2021-03-17 16:08:08.028  INFO 13884 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:08:08.163  INFO 13884 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:08:08.369  WARN 13884 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:08:09.168  INFO 13884 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:08:09.246  INFO 13884 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:08:09.627  INFO 13884 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:08:09.658  INFO 13884 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:08:09.666  INFO 13884 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 183.524 seconds (JVM running for 184.171)
+2021-03-17 16:08:09.833  INFO 13884 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:08:09.845  INFO 13884 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:09:37.286  INFO 14444 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 14444 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:09:37.288 DEBUG 14444 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:09:37.288  INFO 14444 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:09:37.323  INFO 14444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:09:37.323  INFO 14444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:11:50.956  INFO 14444 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:11:50.957  INFO 14444 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:11:50.980  INFO 14444 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2021-03-17 16:11:51.500  INFO 14444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:11:51.569  INFO 14444 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 134246 ms
+2021-03-17 16:11:51.651  INFO 14444 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:11:51.782  INFO 14444 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:11:51.993  WARN 14444 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:11:52.795  INFO 14444 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:11:52.873  INFO 14444 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:11:53.253  INFO 14444 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:11:53.284  INFO 14444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:11:53.292  INFO 14444 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 136.343 seconds (JVM running for 137.002)
+2021-03-17 16:11:53.458  INFO 14444 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:11:53.470  INFO 14444 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:11:56.409  INFO 13064 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 13064 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:11:56.411 DEBUG 13064 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:11:56.411  INFO 13064 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:11:56.445  INFO 13064 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:11:56.446  INFO 13064 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:16:12.875  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:16:12.877  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:16:12.904  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16ms. Found 0 Redis repository interfaces.
+2021-03-17 16:16:13.455  INFO 13064 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:16:13.516  INFO 13064 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 257070 ms
+2021-03-17 16:16:13.598  INFO 13064 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:16:13.735  INFO 13064 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:16:13.940  WARN 13064 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:16:14.732  INFO 13064 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:16:14.808  INFO 13064 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:16:15.185  INFO 13064 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:16:15.215  INFO 13064 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:16:15.221  INFO 13064 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 259.148 seconds (JVM running for 259.781)
+2021-03-17 16:16:15.388  INFO 13064 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:16:15.400  INFO 13064 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:16:25.861  INFO 6616 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 6616 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:16:25.863 DEBUG 6616 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:16:25.863  INFO 6616 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:16:25.896  INFO 6616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:16:25.896  INFO 6616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-03-17 16:17:24.354  INFO 6616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-03-17 16:17:24.356  INFO 6616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-03-17 16:17:24.382  INFO 6616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
+2021-03-17 16:17:24.926  INFO 6616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-03-17 16:17:24.988  INFO 6616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 59092 ms
+2021-03-17 16:17:25.073  INFO 6616 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-03-17 16:17:25.188  INFO 6616 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-03-17 16:17:25.393  WARN 6616 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-03-17 16:17:26.224  INFO 6616 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:17:26.304  INFO 6616 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-03-17 16:17:26.678  INFO 6616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 16:17:26.708  INFO 6616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-03-17 16:17:26.715  INFO 6616 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 61.155 seconds (JVM running for 69.288)
+2021-03-17 16:17:26.882  INFO 6616 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-17 16:17:26.894  INFO 6616 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-03-17 16:18:25.699  INFO 9080 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 9080 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-03-17 16:18:25.701 DEBUG 9080 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-03-17 16:18:25.701  INFO 9080 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: prod
+2021-03-17 16:18:25.734  INFO 9080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-03-17 16:18:25.735  INFO 9080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'

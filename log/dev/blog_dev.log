@@ -1,0 +1,151 @@
+2021-05-24 19:41:42.734  INFO 17096 --- [restartedMain] com.hzx.blog.BlogApplication             : Starting BlogApplication on DESKTOP-QPGU05N with PID 17096 (D:\Study\JAVA\Project\Blog\newBlog\target\classes started by Free in D:\Study\JAVA\Project\Blog\newBlog)
+2021-05-24 19:41:42.739 DEBUG 17096 --- [restartedMain] com.hzx.blog.BlogApplication             : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2021-05-24 19:41:42.739  INFO 17096 --- [restartedMain] com.hzx.blog.BlogApplication             : The following profiles are active: dev
+2021-05-24 19:41:42.772  INFO 17096 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-05-24 19:41:42.772  INFO 17096 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-05-24 19:41:43.390  INFO 17096 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-24 19:41:43.392  INFO 17096 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-05-24 19:41:43.415  INFO 17096 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 Redis repository interfaces.
+2021-05-24 19:41:43.938  INFO 17096 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8060 (http)
+2021-05-24 19:41:43.944  INFO 17096 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-24 19:41:43.944  INFO 17096 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021-05-24 19:41:43.998  INFO 17096 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-24 19:41:43.998  INFO 17096 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1226 ms
+2021-05-24 19:41:44.073  INFO 17096 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-05-24 19:41:44.205  INFO 17096 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-05-24 19:41:44.420  WARN 17096 --- [restartedMain] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.hzx.blog.bean.BlogTag".
+2021-05-24 19:41:45.196  INFO 17096 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-24 19:41:45.275  INFO 17096 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-05-24 19:41:45.623  INFO 17096 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-24 19:41:45.652  INFO 17096 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8060 (http) with context path ''
+2021-05-24 19:41:45.659  INFO 17096 --- [restartedMain] com.hzx.blog.BlogApplication             : Started BlogApplication in 3.262 seconds (JVM running for 3.85)
+2021-05-24 19:41:55.556  INFO 17096 --- [http-nio-8060-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-24 19:41:55.556  INFO 17096 --- [http-nio-8060-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-24 19:41:55.563  INFO 17096 --- [http-nio-8060-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2021-05-24 19:41:55.587  INFO 17096 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.index', args=[{}, null]}
+2021-05-24 19:41:56.046 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog WHERE (published = ?)
+2021-05-24 19:41:56.060 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: true(Boolean)
+2021-05-24 19:41:56.077 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2021-05-24 19:41:56.081 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE (published = ?) ORDER BY update_time DESC LIMIT ?
+2021-05-24 19:41:56.081 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: true(Boolean), 6(Long)
+2021-05-24 19:41:56.088 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 2
+2021-05-24 19:41:56.089 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2021-05-24 19:41:56.089 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2021-05-24 19:41:56.092 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.094 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:41:56.094 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Long)
+2021-05-24 19:41:56.097 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.098 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2021-05-24 19:41:56.098 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 54(Long)
+2021-05-24 19:41:56.101 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2021-05-24 19:41:56.103 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:41:56.103 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 4(Long)
+2021-05-24 19:41:56.105 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:41:56.106 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2021-05-24 19:41:56.106 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2021-05-24 19:41:56.107 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.107 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:41:56.107 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Long)
+2021-05-24 19:41:56.108 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.109 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2021-05-24 19:41:56.109 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 80(Long)
+2021-05-24 19:41:56.110 DEBUG 17096 --- [http-nio-8060-exec-1] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2021-05-24 19:41:56.111 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:41:56.111 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2021-05-24 19:41:56.112 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:41:56.112 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==>  Preparing: select type_id from new_blog.t_blog where published=true group by type_id order by count(type_id) desc limit ?; -- select distinct type_id from new_blog.t_blog where published=true;
+2021-05-24 19:41:56.112 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==> Parameters: 6(Integer)
+2021-05-24 19:41:56.114 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.BlogMapper.getPublishedTypeIds   : <==      Total: 2
+2021-05-24 19:41:56.114 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:41:56.114 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Integer)
+2021-05-24 19:41:56.115 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.115 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==>  Preparing: select count(*) from new_blog.t_blog where published=true and type_id=?
+2021-05-24 19:41:56.115 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==> Parameters: 7(Integer)
+2021-05-24 19:41:56.116 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : <==      Total: 1
+2021-05-24 19:41:56.117 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:41:56.117 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Integer)
+2021-05-24 19:41:56.117 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:41:56.118 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==>  Preparing: select count(*) from new_blog.t_blog where published=true and type_id=?
+2021-05-24 19:41:56.118 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==> Parameters: 16(Integer)
+2021-05-24 19:41:56.119 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getBlogNumByPublishedAndTypeId : <==      Total: 1
+2021-05-24 19:41:56.120 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getPublishedIdList  : ==>  Preparing: select id from new_blog.t_blog where published=true;
+2021-05-24 19:41:56.120 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getPublishedIdList  : ==> Parameters: 
+2021-05-24 19:41:56.122 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getPublishedIdList  : <==      Total: 2
+2021-05-24 19:41:56.124 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getPublishedTagIds             : ==>  Preparing: select tag_id tagId,count(tag_id) publishedBlogNum from new_blog.t_blog_tag where blog_id in ( ? , ? ) group by tag_id order by count(tag_id) desc limit ?;
+2021-05-24 19:41:56.124 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getPublishedTagIds             : ==> Parameters: 54(Integer), 80(Integer), 8(Integer)
+2021-05-24 19:41:56.125 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.d.B.getPublishedTagIds             : <==      Total: 2
+2021-05-24 19:41:56.126 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:41:56.126 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2021-05-24 19:41:56.127 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:41:56.127 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:41:56.127 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 4(Long)
+2021-05-24 19:41:56.128 DEBUG 17096 --- [http-nio-8060-exec-1] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:41:56.493 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : ==>  Preparing: select * from new_blog.t_blog where published=true and recommend=true order by update_time desc limit ?
+2021-05-24 19:41:56.493 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : ==> Parameters: 5(Integer)
+2021-05-24 19:41:56.495 DEBUG 17096 --- [http-nio-8060-exec-1] c.h.b.dao.BlogMapper.getRecommendBlog    : <==      Total: 1
+2021-05-24 19:41:56.530  INFO 17096 --- [http-nio-8060-exec-1] com.hzx.blog.aspect.LogAspect            : 返回结果 : index
+2021-05-24 19:41:57.576  INFO 17096 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2021-05-24 19:41:57.607  INFO 17096 --- [http-nio-8060-exec-6] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2021-05-24 19:42:00.589  INFO 17096 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2021-05-24 19:42:00.592  INFO 17096 --- [http-nio-8060-exec-7] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
+2021-05-24 19:42:01.908  INFO 17096 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.index', args=[{}, null]}
+2021-05-24 19:42:01.911 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==>  Preparing: SELECT COUNT(*) FROM t_blog WHERE (published = ?)
+2021-05-24 19:42:01.911 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : ==> Parameters: true(Boolean)
+2021-05-24 19:42:01.912 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.selectPage_mpCount  : <==      Total: 1
+2021-05-24 19:42:01.913 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : ==>  Preparing: SELECT id,title,content,first_picture,flag,description,views,good_job,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,user_id FROM t_blog WHERE (published = ?) ORDER BY update_time DESC LIMIT ?
+2021-05-24 19:42:01.913 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : ==> Parameters: true(Boolean), 6(Long)
+2021-05-24 19:42:01.916 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.BlogMapper.selectPage   : <==      Total: 2
+2021-05-24 19:42:01.916 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2021-05-24 19:42:01.916 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2021-05-24 19:42:01.917 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.917 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:42:01.917 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Long)
+2021-05-24 19:42:01.918 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.919 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2021-05-24 19:42:01.919 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 54(Long)
+2021-05-24 19:42:01.919 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2021-05-24 19:42:01.920 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:42:01.920 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 4(Long)
+2021-05-24 19:42:01.920 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:42:01.921 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : ==>  Preparing: SELECT id,nickname,username,password,email,avatar,create_time,update_time FROM t_user WHERE id=?
+2021-05-24 19:42:01.921 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : ==> Parameters: 1(Long)
+2021-05-24 19:42:01.922 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.UserMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.922 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:42:01.922 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Long)
+2021-05-24 19:42:01.923 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.923 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : ==>  Preparing: SELECT blog_id,tag_id FROM t_blog_tag WHERE (blog_id = ?)
+2021-05-24 19:42:01.924 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : ==> Parameters: 80(Long)
+2021-05-24 19:42:01.924 DEBUG 17096 --- [http-nio-8060-exec-10] c.hzx.blog.dao.BlogTagMapper.selectList  : <==      Total: 1
+2021-05-24 19:42:01.925 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:42:01.925 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2021-05-24 19:42:01.925 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:42:01.925 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==>  Preparing: select type_id from new_blog.t_blog where published=true group by type_id order by count(type_id) desc limit ?; -- select distinct type_id from new_blog.t_blog where published=true;
+2021-05-24 19:42:01.926 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.BlogMapper.getPublishedTypeIds   : ==> Parameters: 6(Integer)
+2021-05-24 19:42:01.926 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.BlogMapper.getPublishedTypeIds   : <==      Total: 2
+2021-05-24 19:42:01.927 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:42:01.927 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 7(Integer)
+2021-05-24 19:42:01.927 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.928 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==>  Preparing: select count(*) from new_blog.t_blog where published=true and type_id=?
+2021-05-24 19:42:01.928 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==> Parameters: 7(Integer)
+2021-05-24 19:42:01.929 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : <==      Total: 1
+2021-05-24 19:42:01.929 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==>  Preparing: SELECT id,name FROM t_type WHERE id=?
+2021-05-24 19:42:01.929 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : ==> Parameters: 16(Integer)
+2021-05-24 19:42:01.930 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TypeMapper.selectById   : <==      Total: 1
+2021-05-24 19:42:01.930 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==>  Preparing: select count(*) from new_blog.t_blog where published=true and type_id=?
+2021-05-24 19:42:01.930 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : ==> Parameters: 16(Integer)
+2021-05-24 19:42:01.931 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getBlogNumByPublishedAndTypeId : <==      Total: 1
+2021-05-24 19:42:01.931 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.getPublishedIdList  : ==>  Preparing: select id from new_blog.t_blog where published=true;
+2021-05-24 19:42:01.931 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.getPublishedIdList  : ==> Parameters: 
+2021-05-24 19:42:01.932 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.dao.BlogMapper.getPublishedIdList  : <==      Total: 2
+2021-05-24 19:42:01.932 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getPublishedTagIds             : ==>  Preparing: select tag_id tagId,count(tag_id) publishedBlogNum from new_blog.t_blog_tag where blog_id in ( ? , ? ) group by tag_id order by count(tag_id) desc limit ?;
+2021-05-24 19:42:01.932 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getPublishedTagIds             : ==> Parameters: 54(Integer), 80(Integer), 8(Integer)
+2021-05-24 19:42:01.933 DEBUG 17096 --- [http-nio-8060-exec-10] c.h.b.d.B.getPublishedTagIds             : <==      Total: 2
+2021-05-24 19:42:01.934 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:42:01.934 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 20(Long)
+2021-05-24 19:42:01.935 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:42:01.935 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==>  Preparing: SELECT id,name FROM t_tag WHERE id=?
+2021-05-24 19:42:01.935 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : ==> Parameters: 4(Long)
+2021-05-24 19:42:01.935 DEBUG 17096 --- [http-nio-8060-exec-10] com.hzx.blog.dao.TagMapper.selectById    : <==      Total: 1
+2021-05-24 19:42:01.937  INFO 17096 --- [http-nio-8060-exec-10] com.hzx.blog.aspect.LogAspect            : 返回结果 : index
+2021-05-24 19:42:02.199  INFO 17096 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 请求信息 : RequestLog{url='http://localhost:8060/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.hzx.blog.controller.IndexController.newBlogs', args=[{}]}
+2021-05-24 19:42:02.202  INFO 17096 --- [http-nio-8060-exec-4] com.hzx.blog.aspect.LogAspect            : 返回结果 : _fragments :: newbloglist
