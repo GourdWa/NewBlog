@@ -6,7 +6,9 @@ import com.hzx.blog.bean.Comment;
 import com.hzx.blog.dao.CommentMapper;
 import com.hzx.blog.service.BlogService;
 import com.hzx.blog.service.CommentService;
+import com.hzx.blog.utils.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,21 +22,21 @@ import java.util.stream.Collectors;
  */
 @Service
 public class CommentServiceImpl implements CommentService {
-
+    private String receiveEmail = "1312685188@qq.com";
     @Autowired
     private CommentMapper commentMapper;
     @Autowired
     private BlogService blogService;
 
+
+
+    List<Comment> tempList = new ArrayList<>();
     /**
      * 评论递归设置子评论
      *
      * @param comments
      * @return
      */
-
-    List<Comment> tempList = new ArrayList<>();
-
     private List<Comment> eachComment(List<Comment> comments) {
         for (Comment comment : comments) {
             //查出这些评论的子评论
@@ -138,5 +140,19 @@ public class CommentServiceImpl implements CommentService {
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("blog_id", blogId);
         return commentMapper.delete(queryWrapper);
+    }
+
+    @Override
+    @Async("asyncExecutor")
+    public void asyncSendEmail(Comment comment, String blogTitle, String url) {
+        boolean isReply = false;
+        Long parentId = comment.getParentComment().getId();
+        if (parentId != -1) {
+            isReply = true;//代表这是一个回复留言，不是新留言
+            //如果是新留言，那么需要通知其父留言
+            Comment parentComment = getCommentById(parentId);
+            receiveEmail = parentComment.getEmail();
+        }
+        EmailUtil.sendEmail(receiveEmail, blogTitle, url, isReply);
     }
 }

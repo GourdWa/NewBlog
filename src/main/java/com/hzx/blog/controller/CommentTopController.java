@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * @author Zixiang Hu
@@ -26,7 +28,6 @@ import java.util.List;
  */
 @Controller
 public class CommentTopController {
-    private String receiveEmail = "1312685188@qq.com";
     @Autowired
     private CommentService commentService;
     @Autowired
@@ -34,6 +35,8 @@ public class CommentTopController {
 
     @Value("${comment.avatar}")
     private String avatar;
+    @Autowired
+    Executor asyncExecutor;
 
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
@@ -61,19 +64,8 @@ public class CommentTopController {
         commentService.saveComment(comment);
         // 2020.12.18 增加邮箱通知留言功能
         Blog blog = blogService.getBlogById(blogId);
-        helperSendEmail(comment, blog.getTitle(), url);
+        // 2022.03.02 异步留言
+        commentService.asyncSendEmail(comment, blog.getTitle(), url);
         return "redirect:/comments/" + comment.getBlog().getId();
-    }
-
-    public void helperSendEmail(Comment comment, String blogTitle, String url) {
-        boolean isReply = false;
-        Long parentId = comment.getParentComment().getId();
-        if (parentId != -1) {
-            isReply = true;//代表这是一个回复留言，不是新留言
-            //如果是新留言，那么需要通知其父留言
-            Comment parentComment = commentService.getCommentById(parentId);
-            receiveEmail = parentComment.getEmail();
-        }
-        EmailUtil.sendEmail(receiveEmail, blogTitle, url, isReply);
     }
 }

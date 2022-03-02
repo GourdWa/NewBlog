@@ -59,4 +59,12 @@ public interface CommentService {
      * @return
      */
     Integer deleteByBlogId(Long blogId);
+
+    /**
+     * 发送邮件
+     * @param comment
+     * @param blogTitle
+     * @param url
+     */
+    void asyncSendEmail(Comment comment, String blogTitle, String url);
 }
